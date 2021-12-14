@@ -1,6 +1,7 @@
 .profile__edit-butt-img{
     width: 10px;
     height: 10px;
+    align-self: center;
 }
 @media screen and (max-width: 770px) {
     .profile__edit-butt-img {
