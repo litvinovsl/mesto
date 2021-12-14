@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Место</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vendor/normalize.css">
+    <link rel="stylesheet" href="./vendor/InterWeb/inter.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./page/index.css">
+    
+
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/logo-mesto.svg" alt="лого">
+    </header>
+
+    <main class="content">
+        <section class="profile">
+            <div class="profile__info">
+                <img class="profile__avatar" src="./images/image.jpg" alt="аватар">
+                <div class="profile__user">
+                    <p class="profile__username">Жак-Ив Кусто</p>
+                    <button class="profile__edit-butt">
+                        <img class="profile__edit-butt-img" src="./images/buttom (edit).svg">
+                    </button>
+                    <p class="profile__about-user">Исследователь океана</p>
+                </div>
+            </div>
+            <button class="profile__add-button">
+                <img class="profile__add-button-img" src="./images/buttom (plus).svg" alt="добавить картинку">
+            </button>
+        </section>
+        <section class="elements">
+            <div class="element">
+                <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
+                <p class="element__name">Карачаевск</p>
+                <div class="element__likes">
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус">
+                <p class="element__name">Гора Эльбрус</p>
+                <div class="element__likes">
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+                <p class="element__name">Домбай</p>
+                <div class="element__likes">
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус">
+                <p class="element__name">Гора Эльбрус</p>
+                <div class="element__likes">
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+                <p class="element__name">Домбай</p>
+                <div class="element__likes">
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
+                <p class="element__name">Карачаево-Черкессия</p>
+                <div class="element__likes">
+                    <div class="element__like"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <section class="popup popup__conteiner">
+        <form class="popup__form popup__edit-user-form" action="#" novalidate>
+            <button class="popup__button-close"><img class="popup__button-close-img" src="./images/Close Icon.svg"
+                    alt="Закрыть"></button>
+            <h2 class="popup__edit-text">Редактировать профиль</h2>
+            <input type="text" value="Жак-Ив Кусто" class="popup__input popup__text popup__user-name" name="name" placeholder="Имя"
+                required minlength="2" maxlength="40">
+            <input type="text" value="Исследователь океана" class="popup__input popup__text popup__about-user" name="about-user"
+                placeholder="О себе.." required minlength="2" maxlength="40">
+            <button class="popup__button-save">
+                <p class="popup__button-save-text">Сохранить</p>
+            </button>
+
+        </form>
+    </section>
+</body>
+<script src="Script.js"></script> 
+
+</html>

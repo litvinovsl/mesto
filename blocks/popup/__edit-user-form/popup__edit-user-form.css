@@ -1,0 +1,12 @@
+.popup__edit-user-form{
+    flex-direction: column;
+    width: 430px;
+    height: 330px;
+}
+
+@media screen and (max-width: 600px) {
+    .popup__edit-user-form {
+        width: 282px;
+        height: 322px;
+    }
+}
