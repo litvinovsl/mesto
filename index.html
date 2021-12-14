@@ -22,13 +22,13 @@
                 <div class="profile__user">
                     <p class="profile__username">Жак-Ив Кусто</p>
                     <button class="profile__edit-butt">
-                        <img class="profile__edit-butt-img" src="./images/buttom (edit).svg">
+                        <img class="profile__edit-butt-img" src="./images/buttom-edit.svg" alt="редактировать">
                     </button>
                     <p class="profile__about-user">Исследователь океана</p>
                 </div>
             </div>
             <button class="profile__add-button">
-                <img class="profile__add-button-img" src="./images/buttom (plus).svg" alt="добавить картинку">
+                <img class="profile__add-button-img" src="./images/buttom-plus.svg" alt="добавить картинку">
             </button>
         </section>
         <section class="elements">
@@ -82,20 +82,19 @@
     </footer>
     <section class="popup popup__conteiner">
         <form class="popup__form popup__edit-user-form" action="#" novalidate>
-            <button type="button" class="popup__button-close"><img class="popup__button-close-img" src="./images/Close Icon.svg"
+            <button type="button" class="popup__button-close"><img class="popup__button-close-img" src="./images/Close-Icon.svg"
                     alt="Закрыть"></button>
             <h2 class="popup__edit-text">Редактировать профиль</h2>
             <input type="text" value="Жак-Ив Кусто" class="popup__input popup__text popup__user-name" name="name" placeholder="Имя"
                 required minlength="2" maxlength="40">
             <input type="text" value="Исследователь океана" class="popup__input popup__text popup__about-user" name="about-user"
                 placeholder="О себе.." required minlength="2" maxlength="40">
-            <button class="popup__button-save">
-                <p class="popup__button-save-text">Сохранить</p>
-            </button>
+            <button class="popup__button-save">Сохранить</button>
 
         </form>
     </section>
+    <script src="Script.js"></script> 
 </body>
-<script src="Script.js"></script> 
+
 
 </html>
