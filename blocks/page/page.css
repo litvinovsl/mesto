@@ -7,3 +7,8 @@
     -webkit-font-smoothing: antialiased;
     margin: 0;
 }
+
+/* при загрузке на github page появляется margin у body 8px */
+body{
+    margin: 0;
+}
