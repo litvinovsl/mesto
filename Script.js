@@ -23,26 +23,24 @@ closeEditButt.addEventListener('click', closeUserForm);
 let formElement = document.querySelector('.popup__form');
 
 // Находим поля формы в DOM
-let nameInput = formElement.querySelector('.popup__user-name'); // Воспользуйтесь инструментом .querySelector()
-let jobInput = formElement.querySelector('.popup__about-user');// Воспользуйтесь инструментом .querySelector()
+let nameInput = formElement.querySelector('.popup__user-name');
+let jobInput = formElement.querySelector('.popup__about-user');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                         // Так мы можем определить свою логику отправки.
-                        // О том, как это делать, расскажем позже.
 
-    // Получите значение полей jobInput и nameInput из свойства value
+    // Получил значение полей jobInput и nameInput из свойства value
     let newUser = nameInput.value;
     let newAboutUser = jobInput.value;
-    // Выберите элементы, куда должны быть вставлены значения полей
+    // Выбрал элементы, куда должны быть вставлены значения полей
     let profileUserName = document.querySelector('.profile__username');
     let profileUserAbout = document.querySelector('.profile__about-user');
-    console.log(profileUserName);
-    console.log(profileUserAbout);
-    // Вставьте новые значения с помощью textContent
+    // Вставил новые значения с помощью textContent
     profileUserAbout.textContent = newAboutUser;
     profileUserName.textContent = newUser;
+    editUserForm.classList.remove('popup_opened');
 }
 
 // Прикрепляем обработчик к форме:
