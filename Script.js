@@ -1,6 +1,6 @@
 //открыть форму
 let editButt = document.querySelector('.profile__edit-butt');
-let editUserForm = document.querySelector('.popup__conteiner');
+let editUserForm = document.querySelector('.popup');
 function openUserForm(){
     if(editUserForm.classList.contains('popup_opened') === false){
         editUserForm.classList.add('popup_opened');
