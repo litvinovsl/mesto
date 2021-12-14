@@ -5,6 +5,12 @@ function openUserForm(){
     if(editUserForm.classList.contains('popup_opened') === false){
         editUserForm.classList.add('popup_opened');
     }
+    let profileUserName = document.querySelector('.profile__username').textContent;
+    let profileUserAbout = document.querySelector('.profile__about-user').textContent;
+    console.log(nameInput.value);
+    jobInput.value = profileUserAbout;
+    nameInput.value = profileUserName;
+    return;
 }
 editButt.addEventListener('click', openUserForm); 
 
@@ -13,6 +19,7 @@ editButt.addEventListener('click', openUserForm);
 let closeEditButt = document.querySelector('.popup__button-close');
 function closeUserForm(){
         editUserForm.classList.remove('popup_opened');
+
 }
 closeEditButt.addEventListener('click', closeUserForm); 
 
@@ -39,9 +46,12 @@ function formSubmitHandler (evt) {
     let profileUserAbout = document.querySelector('.profile__about-user');
     // Вставил новые значения с помощью textContent
     profileUserAbout.textContent = newAboutUser;
-    profileUserName.textContent = newUser;
+    profileUserName.textContent = newUser; 
     editUserForm.classList.remove('popup_opened');
+
 }
+let profileUserName = document.querySelector('.profile__username').textContent;
+
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
