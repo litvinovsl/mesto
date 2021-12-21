@@ -6,3 +6,8 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 }
+@media screen and (max-width: 600px) {
+    .element {
+        min-height: 361px;
+    }
+}

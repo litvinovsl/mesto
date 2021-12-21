@@ -6,7 +6,7 @@
     <title>Место</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./page/index.css">
-    
+
 
 </head>
 
@@ -20,10 +20,12 @@
             <div class="profile__info">
                 <img class="profile__avatar" src="./images/image.jpg" alt="аватар">
                 <div class="profile__user">
-                    <p class="profile__username">Жак-Ив Кусто</p>
-                    <button class="profile__edit-butt">
-                        <img class="profile__edit-butt-img" src="./images/buttom-edit.svg" alt="редактировать">
-                    </button>
+                    <div class="profile__user-name-edit">
+                        <h1 class="profile__username">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-butt">
+                            <img class="profile__edit-butt-img" src="./images/buttom-edit.svg" alt="редактировать">
+                        </button>
+                    </div>
                     <p class="profile__about-user">Исследователь океана</p>
                 </div>
             </div>
@@ -35,44 +37,32 @@
             <div class="element">
                 <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
                 <p class="element__name">Карачаевск</p>
-                <div class="element__likes">
-                    <div class="element__like"></div>
-                </div>
+                <button type="button" class="element__like"></button>
             </div>
             <div class="element">
                 <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус">
                 <p class="element__name">Гора Эльбрус</p>
-                <div class="element__likes">
-                    <div class="element__like"></div>
-                </div>
+                <button type="button" class="element__like"></button>
             </div>
             <div class="element">
                 <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
                 <p class="element__name">Домбай</p>
-                <div class="element__likes">
-                    <div class="element__like"></div>
-                </div>
+                <button type="button" class="element__like"></button>
             </div>
             <div class="element">
                 <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус">
                 <p class="element__name">Гора Эльбрус</p>
-                <div class="element__likes">
-                    <div class="element__like"></div>
-                </div>
+                <button type="button" class="element__like"></button>
             </div>
             <div class="element">
                 <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
                 <p class="element__name">Домбай</p>
-                <div class="element__likes">
-                    <div class="element__like"></div>
-                </div>
+                <button type="button" class="element__like"></button>
             </div>
             <div class="element">
-                <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
+                <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаево-Черкессия">
                 <p class="element__name">Карачаево-Черкессия</p>
-                <div class="element__likes">
-                    <div class="element__like"></div>
-                </div>
+                <button type="button" class="element__like"></button>
             </div>
         </section>
     </main>
@@ -81,19 +71,23 @@
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <section class="popup">
-        <form class="popup__form popup__edit-user-form" action="#" novalidate>
-            <button type="button" class="popup__button-close"><img class="popup__button-close-img" src="./images/Close-Icon.svg"
-                    alt="Закрыть"></button>
-            <h2 class="popup__edit-text">Редактировать профиль</h2>
-            <input type="text" value="Жак-Ив Кусто" class="popup__input popup__text popup__user-name" name="name" placeholder="Имя"
-                required minlength="2" maxlength="40">
-            <input type="text" value="Исследователь океана" class="popup__input popup__text popup__about-user" name="about-user"
-                placeholder="О себе.." required minlength="2" maxlength="40">
-            <button class="popup__button-save">Сохранить</button>
-
-        </form>
+        <div class="popup__container">
+            <button type="button" class="popup__button-close"><img class="popup__button-close-img"
+                    src="./images/Close-Icon.svg" alt="Закрыть">
+            </button>
+            <form class="popup__form" action="#" novalidate>
+                <h2 class="popup__edit-text">Редактировать профиль</h2>
+                <fieldset class="popup__inputs">
+                    <input id="popup__username" type="text" value="Жак-Ив Кусто" class="popup__input"
+                        name="name" placeholder="Имя" required minlength="2" maxlength="40">
+                    <input id="popup__user-about" type="text" value="Исследователь океана" class="popup__input"
+                        name="about-user" placeholder="О себе.." required minlength="2" maxlength="40">
+                    <button class="popup__button-save">Сохранить</button>
+                </fieldset>
+            </form>
+        </div>
     </section>
-    <script src="Script.js"></script> 
+    <script src="Script.js"></script>
 </body>
 
 

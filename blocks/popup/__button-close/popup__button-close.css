@@ -1,9 +1,12 @@
 .popup__button-close{
     cursor: pointer;
     overflow: visible;
+    align-self: flex-end;
+
     position: absolute;
     top: -40px;
     right: -40px;
+
     width: 32px;
     height: 32px;
     border: none;

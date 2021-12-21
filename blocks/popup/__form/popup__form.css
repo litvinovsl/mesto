@@ -1,7 +1,6 @@
 .popup__form{
+    align-items: center;
+    justify-content: center;
     display: flex;
-    z-index: 3;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    position: relative;
+    flex-direction: column;
 }

@@ -1,9 +1,14 @@
 .element__like{
+    justify-self: center;
+    align-self: center;
+    margin-right: 20px;
     width: 22px;
     height: 19px;
     background-image: url(../../../images/buttom-like.svg);
     cursor: pointer;
     transition: opacity .3s ease-in-out;
+    border: none;
+    background-color: transparent;
 }
     
 .element__like:hover {
@@ -11,5 +16,10 @@
 }
 .element__like:active{
     background-image: url(../../../images/like-active.svg);
+}
+@media screen and (max-width: 600px) {
+    .element__like {
+        margin-right: 20px;
+    }
 }
 
