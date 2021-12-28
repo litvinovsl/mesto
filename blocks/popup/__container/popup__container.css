@@ -6,12 +6,13 @@
     position: relative;
     flex-direction: column;
     width: 430px;
-    height: 330px;
+    min-height: 330px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (max-width: 600px) {
     .popup__container {
         width: 282px;
-        height: 322px;
+        min-height: 322px;
     }
 }

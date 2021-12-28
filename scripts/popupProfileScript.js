@@ -35,7 +35,7 @@ function formSubmitHandler (evt) {
     // Вставил новые значения с помощью textContent
     profileUserAbout.textContent = newAboutUser;
     profileUserName.textContent = newUser; 
-    editUserForm.classList.remove('popup_opened');
+    closeUserForm();
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»

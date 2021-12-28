@@ -5,7 +5,7 @@
 }
 @media screen and (max-width: 600px) {
     .profile__user-name-edit {
-        gap: 10px;
+        gap: 13px;
     }
     .profile__user-name-edit:nth-child(1){
         align-self: flex-start;
