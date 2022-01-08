@@ -92,7 +92,7 @@ const initialCards = [
 const cardConteuner = document.querySelector('.elements');
 const createButt = document.querySelector('#create-button');
 
-
+// появление 6 начальных картинок из массива объектов
 initialCards.map(function(li){
     addCard(li.link, li.name);
 });
@@ -104,12 +104,13 @@ function addCard(cardImage, cardName){
     cardElement.querySelector('.element__image').src = cardImage;
     cardElement.querySelector('.element__name').textContent = cardName;
 
-    cardConteuner.prepend(cardElement);
+    cardConteuner.prepend(cardElement); //установка карточек в начало контенера
 
     cardElement.querySelector('.element__like').addEventListener('click', function(evt){
         evt.target.classList.toggle('element__like_active');
-    });
+    });//установка лайка по клику
 };
+
 createButt.addEventListener('click', function () {
 
     const placeImg = document.querySelector('#popup__place-link');

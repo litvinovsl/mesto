@@ -14,9 +14,7 @@
 .element__like:hover {
     opacity: .5;
 }
-.element__like:active{
-    background-image: url(../../../images/like-active.svg);
-}
+
 @media screen and (max-width: 600px) {
     .element__like {
         margin-right: 20px;
