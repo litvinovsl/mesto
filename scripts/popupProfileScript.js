@@ -94,8 +94,7 @@ const createButt = document.querySelector('#create-button');
 
 
 initialCards.map(function(li){
-    
-    return 
+    addCard(li.link, li.name);
 });
 
 function addCard(cardImage, cardName){
@@ -105,7 +104,7 @@ function addCard(cardImage, cardName){
     cardElement.querySelector('.element__image').src = cardImage;
     cardElement.querySelector('.element__name').textContent = cardName;
 
-    cardConteuner.append(cardElement);
+    cardConteuner.prepend(cardElement);
 
     cardElement.querySelector('.element__like').addEventListener('click', function(evt){
         evt.target.classList.toggle('element__like_active');
