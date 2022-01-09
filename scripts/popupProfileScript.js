@@ -92,6 +92,7 @@ const initialCards = [
 const cardConteuner = document.querySelector('.elements');
 const createButt = document.querySelector('#create-button');
 
+
 // появление 6 начальных картинок из массива объектов
 initialCards.map(function(li){
     addCard(li.link, li.name);
@@ -100,11 +101,16 @@ initialCards.map(function(li){
 function addCard(cardImage, cardName){
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+    
 
     cardElement.querySelector('.element__image').src = cardImage;
     cardElement.querySelector('.element__name').textContent = cardName;
 
     cardConteuner.prepend(cardElement); //установка карточек в начало контенера
+    
+    cardElement.querySelector('.element__delete').addEventListener('click', function(evt){
+        evt.target.parentElement.remove();
+    });//удаление карточки путем удаления родительского элемента кнопки
 
     cardElement.querySelector('.element__like').addEventListener('click', function(evt){
         evt.target.classList.toggle('element__like_active');
@@ -120,3 +126,4 @@ createButt.addEventListener('click', function () {
     popupClose(popupCreate);
     
 });
+
