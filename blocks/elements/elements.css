@@ -6,6 +6,7 @@
     margin: 51px auto 0;
     color: black;
     align-content: center;
+    min-height: 40vh;
 }
 @media screen and (max-width: 1070px) {
     .elements {
