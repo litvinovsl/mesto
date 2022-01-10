@@ -31,7 +31,7 @@ const nameInput = formElement.querySelector('#popup__username');
 const jobInput = formElement.querySelector('#popup__user-about');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler (evt) {
+function sendFormProfile (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                         // Так мы можем определить свою логику отправки.
     // Получил значение полей jobInput и nameInput из свойства value
@@ -44,7 +44,7 @@ function formSubmitHandler (evt) {
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', sendFormProfile);
 
 //-----------------------------------------------------------------------------------------
 //=========================================================================================
@@ -128,15 +128,11 @@ function createPopapCard(img, name){
     popupImage.src = img;
     popupImgName.textContent = name;
 }
-
-createButt.addEventListener('click', function () {
-
-    const placeImg = document.querySelector('#popup__place-link');
-    const namePlace = document.querySelector('#popup__place-name');
-  
+const placeImg = document.querySelector('#popup__place-link');
+const namePlace = document.querySelector('#popup__place-name');
+document.querySelector('#form-card').addEventListener('submit', function () {
     cardConteuner.prepend(createCard(placeImg.value, namePlace.value));
     popupClose(popupCreate);
-    
 });
 //===================================================================
 const popupPrewClose = document.querySelector('#popup-closeCard');
