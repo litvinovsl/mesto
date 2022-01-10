@@ -130,7 +130,6 @@ createButt.addEventListener('click', function () {
     popupClose(popupCreate);
     
 });
-
 //===================================================================
 const popupPrewClose = document.querySelector('#popup-closeCard');
 popupPrewClose.addEventListener('click', function(){
