@@ -130,7 +130,8 @@ function createPopapCard(img, name){
 }
 const placeImg = document.querySelector('#popup__place-link');
 const namePlace = document.querySelector('#popup__place-name');
-document.querySelector('#form-card').addEventListener('submit', function () {
+document.querySelector('#form-card').addEventListener('submit', function (evt) {
+    evt.preventDefault();
     cardConteuner.prepend(createCard(placeImg.value, namePlace.value));
     popupClose(popupCreate);
 });
