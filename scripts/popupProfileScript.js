@@ -54,8 +54,8 @@ const popupCreate = document.querySelector('#popup-create');
 const placeImg = document.querySelector('#popup__place-link');
 const namePlace = document.querySelector('#popup__place-name');
 plusButt.addEventListener('click', function(){
-    namePlace = '';
-    placeImg = '';
+    namePlace.value = '';
+    placeImg.value = '';
     openPopup(popupCreate);
 }); 
 createCloseButt.addEventListener('click', function(){
