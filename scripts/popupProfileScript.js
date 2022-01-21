@@ -12,6 +12,7 @@ function popupClose(editUserForm){
     editUserForm.classList.remove('popup_opened');
 
 }
+
 editButt.addEventListener('click', function(){
     jobInput.value = profileUserAbout.textContent;
     nameInput.value = profileUserName.textContent;
@@ -25,10 +26,10 @@ closeEditButt.addEventListener('click', function(){
 }); 
 //запись данных из инпутов
 // Находим форму в DOM
-const formElement = document.querySelector('#form-profile');
+const formElement = document.forms.formProfile;
 // Находим поля формы в DOM
-const nameInput = formElement.querySelector('#popup__username');
-const jobInput = formElement.querySelector('#popup__user-about');
+const nameInput = formElement.elements.name;
+const jobInput = formElement.elements.aboutUser;
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function sendFormProfile (evt) {
@@ -48,11 +49,13 @@ formElement.addEventListener('submit', sendFormProfile);
 
 //-----------------------------------------------------------------------------------------
 //=========================================================================================
+
 const plusButt = document.querySelector('.profile__add-button');
 const createCloseButt = document.querySelector('#popup-card-close');
 const popupCreate = document.querySelector('#popup-create');
-const placeImg = document.querySelector('#popup__place-link');
-const namePlace = document.querySelector('#popup__place-name');
+const placeImg = document.forms.formPlace.elements.placeLink;
+const namePlace = document.forms.formPlace.elements.placeName;
+//=============================================================
 plusButt.addEventListener('click', function(){
     namePlace.value = '';
     placeImg.value = '';
@@ -102,7 +105,7 @@ function createPopapCard(img, name){
     popupImage.src = img;
     popupImgName.textContent = name;
 }
-document.querySelector('#form-card').addEventListener('submit', function (evt) {
+document.forms.formPlace.addEventListener('submit', function (evt) {
     evt.preventDefault();
     cardConteuner.prepend(createCard(placeImg.value, namePlace.value));
     popupClose(popupCreate);
@@ -112,6 +115,11 @@ const popupPrewClose = document.querySelector('#popup-closeCard');
 popupPrewClose.addEventListener('click', function(){
     popupClose(popupCard);
 }); 
-
-
-
+//===================================================================
+//===================================================================
+placeImg.addEventListener('input', function(evt){
+    console.log(evt);
+});
+namePlace.addEventListener('input', function(evt){
+    console.log(evt);
+});

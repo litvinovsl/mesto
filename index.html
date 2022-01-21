@@ -55,13 +55,13 @@
                     src="./images/Close-Icon.svg" alt="Закрыть">
             </button>
             <h2 class="popup__edit-text">Редактировать профиль</h2>
-            <form id="form-profile" class="popup__form" name="popup__form-profile" action="#" novalidate>
+            <form id="form-profile" class="popup__form" name="formProfile" action="#" novalidate>
 
                 <fieldset class="popup__inputs">
                     <input id="popup__username" type="text" value="Жак-Ив Кусто" class="popup__input" name="name"
                         placeholder="Имя" required minlength="2" maxlength="40">
                     <input id="popup__user-about" type="text" value="Исследователь океана" class="popup__input"
-                        name="about-user" placeholder="О себе.." required minlength="2" maxlength="40">
+                        name="aboutUser" placeholder="О себе.." required minlength="2" maxlength="40">
                     <button class="popup__button-save" type="submit">Сохранить</button>
                 </fieldset>
             </form>
@@ -73,11 +73,11 @@
                     src="./images/Close-Icon.svg" alt="Закрыть">
             </button>
             <h2 class="popup__edit-text">Новое место</h2>
-            <form id="form-card" class="popup__form" name="popup__form-profile" action="#" novalidate>
+            <form id="form-card" class="popup__form" name="formPlace" action="#" novalidate>
                 <fieldset class="popup__inputs">
-                    <input id="popup__place-name" type="text" class="popup__input" name="place-name"
+                    <input id="popup__place-name" type="text" class="popup__input" name="placeName"
                         placeholder="Название" required>
-                    <input id="popup__place-link" type="text" class="popup__input" name="place-link"
+                    <input id="popup__place-link" type="text" class="popup__input" name="placeLink"
                         placeholder="Ссылка на картинку" required>
                     <button id="create-button" class="popup__button-save" type="submit">Создать</button>
                 </fieldset>
