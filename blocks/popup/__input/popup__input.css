@@ -9,10 +9,23 @@
     width: 358px;
     height: 27px;
     margin-bottom: 26px;
+    outline:none;
 }
 @media screen and (max-width: 600px) {
     .popup__input {
         width: 238px;
         margin-bottom: 27px;
     }
+}
+.popup__input_error{
+    border-bottom: 1px solid rgba(255, 3, 3, 0.8);
+}
+.popup__input-error{
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    visibility: hidden;
+}
+.popup__input-error_active{
+    visibility: visible;
 }
