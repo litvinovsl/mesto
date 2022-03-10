@@ -146,14 +146,17 @@ const setEventListeners = (formElement) => {
     // Находим все поля внутри формы,
     // сделаем из них массив методом Array.from
     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  
+    const buttonElement = formElement.querySelector('.popup__button-save');
+
     // Обойдём все элементы полученной коллекции
     inputList.forEach((inputElement) => {
       // каждому полю добавим обработчик события input
       inputElement.addEventListener('input', () => {
         // Внутри колбэка вызовем isValid,
         // передав ей форму и проверяемый элемент
-        isValid(formElement, inputElement)
+        isValid(formElement, inputElement);
+        // Вызовем toggleButtonState и передадим ей массив полей и кнопку
+        toggleButtonState(inputList, buttonElement);
       });
     });
 }; 
@@ -180,17 +183,51 @@ const enableValidation = () => {
   enableValidation();
 
 const isValid = (formElement, inputElement) => {
-    debugger;
     if (!inputElement.validity.valid) {
       // Если поле не проходит валидацию, покажем ошибку
       showInputError(formElement, inputElement, inputElement.validationMessage);
-      console.log(inputElement.validationMessage);
-      console.log(inputElement.validity.valid);
     } else {
       // Если проходит, скроем
       hideInputError(formElement, inputElement);
-      console.log(inputElement.validationMessage);
-      console.log(inputElement.validity.valid);
     }
 };
 placeImg.addEventListener('input', isValid);
+
+const hasInvalidInput = (inputList) => {
+    // проходим по этому массиву методом some
+    return inputList.some((inputElement) => {
+      // Если поле не валидно, колбэк вернёт true
+      // Обход массива прекратится и вся фунцкция
+      // hasInvalidInput вернёт true
+  
+      return !inputElement.validity.valid;
+    })
+  };
+
+// Функция принимает массив полей ввода
+// и элемент кнопки, состояние которой нужно менять
+const toggleButtonState = (inputList, buttonElement) => {
+    // Если есть хотя бы один невалидный инпут
+    if (hasInvalidInput(inputList)) {
+      // сделай кнопку неактивной
+      buttonElement.classList.add('popup__button-save_inactive');
+    } else {
+      // иначе сделай кнопку активной
+      buttonElement.classList.remove('popup__button-save_inactive');
+    }
+  }; 
+
+  //закрытие попапов нажатием на фон
+const overlayProfile = document.querySelector('#overlayProfile');
+const overlayCreateCard = document.querySelector('#overlayCreateCard');
+const overlayOpenCard = document.querySelector('#overlayOpenCard');
+  
+overlayProfile.addEventListener('click', function(){
+  popupClose(editUserForm);
+});
+overlayCreateCard.addEventListener('click', function(){
+  popupClose(popupCreate);
+});
+overlayOpenCard.addEventListener('click', function(){
+  popupClose(popupCard);
+});
