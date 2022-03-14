@@ -34,13 +34,10 @@ const jobInput = formElement.elements.aboutUser;
 // она никуда отправляться не будет
 function sendFormProfile (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                        // Так мы можем определить свою логику отправки.
-    // Получил значение полей jobInput и nameInput из свойства value
-    const newUser = nameInput.value;
-    const newAboutUser = jobInput.value;    
+                        // Так мы можем определить свою логику отправки. 
     // Вставил новые значения с помощью textContent
-    profileUserAbout.textContent = newAboutUser;
-    profileUserName.textContent = newUser; 
+    profileUserAbout.textContent = jobInput.value; 
+    profileUserName.textContent = nameInput.value;
     popupClose(editUserForm);
 }
 // Прикрепляем обработчик к форме:
@@ -116,13 +113,6 @@ popupPrewClose.addEventListener('click', function(){
     popupClose(popupCard);
 }); 
 //===================================================================
-//===================================================================
-// placeImg.addEventListener('input', function(evt){
-//     console.log(evt.target.validity.valid);
-// });
-// namePlace.addEventListener('input', function(evt){
-//     console.log(evt.target.validity.valid);
-// });
 
 // Функция, которая добавляет класс с ошибкой
 const showInputError = (formElement, inputElement, errorMessage) => {
@@ -211,13 +201,22 @@ const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
       // сделай кнопку неактивной
       buttonElement.classList.add('popup__button-save_inactive');
+      
+      buttonElement.setAttribute('disabled', true);
+      
     } else {
       // иначе сделай кнопку активной
       buttonElement.classList.remove('popup__button-save_inactive');
+      buttonElement.removeAttribute('disabled');
+      
     }
   }; 
 
-  //закрытие попапов нажатием на фон
+
+//==================================================================
+  
+
+//закрытие попапов нажатием на фон
 const overlayProfile = document.querySelector('#overlayProfile');
 const overlayCreateCard = document.querySelector('#overlayCreateCard');
 const overlayOpenCard = document.querySelector('#overlayOpenCard');
@@ -231,3 +230,14 @@ overlayCreateCard.addEventListener('click', function(){
 overlayOpenCard.addEventListener('click', function(){
   popupClose(popupCard);
 });
+//закрытие попапов нажатием на esc
+function keyHandler(evt) {
+  if (evt.key === 'Escape') {
+    popupClose(editUserForm);
+    popupClose(popupCreate);
+  }
+}
+nameInput.addEventListener('keydown', keyHandler);
+jobInput.addEventListener('keydown', keyHandler);
+placeImg.addEventListener('keydown', keyHandler);
+namePlace.addEventListener('keydown', keyHandler);
