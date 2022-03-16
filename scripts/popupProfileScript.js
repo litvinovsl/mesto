@@ -137,7 +137,6 @@ const setEventListeners = (formElement) => {
     // сделаем из них массив методом Array.from
     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
     const buttonElement = formElement.querySelector('.popup__button-save');
-
     // Обойдём все элементы полученной коллекции
     inputList.forEach((inputElement) => {
       // каждому полю добавим обработчик события input
@@ -145,6 +144,7 @@ const setEventListeners = (formElement) => {
         // Внутри колбэка вызовем isValid,
         // передав ей форму и проверяемый элемент
         isValid(formElement, inputElement);
+
         // Вызовем toggleButtonState и передадим ей массив полей и кнопку
         toggleButtonState(inputList, buttonElement);
       });
@@ -181,8 +181,8 @@ const isValid = (formElement, inputElement) => {
       hideInputError(formElement, inputElement);
     }
 };
-placeImg.addEventListener('input', isValid);
 
+//Если все поля валидны — активировать кнопку, если хотя бы одно нет — заблокировать.
 const hasInvalidInput = (inputList) => {
     // проходим по этому массиву методом some
     return inputList.some((inputElement) => {
