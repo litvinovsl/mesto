@@ -7,6 +7,9 @@ function openPopup(editUserForm){
     if(editUserForm.classList.contains('popup_opened') === false){
         editUserForm.classList.add('popup_opened');
     }
+    const inputList = Array.from(editUserForm.querySelectorAll('.popup__input'));
+    const buttonElement = editUserForm.querySelector('.popup__button-save');
+    toggleButtonState(inputList, buttonElement);
 }
 function popupClose(editUserForm){
     editUserForm.classList.remove('popup_opened');
@@ -132,11 +135,43 @@ const hideInputError = (formElement, inputElement) => {
     formError.textContent = '';
 };
 
+//Если все поля валидны — активировать кнопку, если хотя бы одно нет — заблокировать.
+const hasInvalidInput = (inputList) => {
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    // Если поле не валидно, колбэк вернёт true
+    // Обход массива прекратится и вся фунцкция
+    // hasInvalidInput вернёт true
+
+    return !inputElement.validity.valid;
+  })
+};
+
+// Функция принимает массив полей ввода
+// и элемент кнопки, состояние которой нужно менять
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // сделай кнопку неактивной
+    buttonElement.classList.add('popup__button-save_inactive');
+    
+    buttonElement.setAttribute('disabled', true);
+    
+  } else {
+    // иначе сделай кнопку активной
+    buttonElement.classList.remove('popup__button-save_inactive');
+    buttonElement.removeAttribute('disabled');
+    
+  }
+}; 
+
 const setEventListeners = (formElement) => {
     // Находим все поля внутри формы,
     // сделаем из них массив методом Array.from
     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
     const buttonElement = formElement.querySelector('.popup__button-save');
+    toggleButtonState(inputList, buttonElement);
+    
     // Обойдём все элементы полученной коллекции
     inputList.forEach((inputElement) => {
       // каждому полю добавим обработчик события input
@@ -182,35 +217,35 @@ const isValid = (formElement, inputElement) => {
     }
 };
 
-//Если все поля валидны — активировать кнопку, если хотя бы одно нет — заблокировать.
-const hasInvalidInput = (inputList) => {
-    // проходим по этому массиву методом some
-    return inputList.some((inputElement) => {
-      // Если поле не валидно, колбэк вернёт true
-      // Обход массива прекратится и вся фунцкция
-      // hasInvalidInput вернёт true
+// //Если все поля валидны — активировать кнопку, если хотя бы одно нет — заблокировать.
+// const hasInvalidInput = (inputList) => {
+//     // проходим по этому массиву методом some
+//     return inputList.some((inputElement) => {
+//       // Если поле не валидно, колбэк вернёт true
+//       // Обход массива прекратится и вся фунцкция
+//       // hasInvalidInput вернёт true
   
-      return !inputElement.validity.valid;
-    })
-  };
+//       return !inputElement.validity.valid;
+//     })
+//   };
 
-// Функция принимает массив полей ввода
-// и элемент кнопки, состояние которой нужно менять
-const toggleButtonState = (inputList, buttonElement) => {
-    // Если есть хотя бы один невалидный инпут
-    if (hasInvalidInput(inputList)) {
-      // сделай кнопку неактивной
-      buttonElement.classList.add('popup__button-save_inactive');
+// // Функция принимает массив полей ввода
+// // и элемент кнопки, состояние которой нужно менять
+// const toggleButtonState = (inputList, buttonElement) => {
+//     // Если есть хотя бы один невалидный инпут
+//     if (hasInvalidInput(inputList)) {
+//       // сделай кнопку неактивной
+//       buttonElement.classList.add('popup__button-save_inactive');
       
-      buttonElement.setAttribute('disabled', true);
+//       buttonElement.setAttribute('disabled', true);
       
-    } else {
-      // иначе сделай кнопку активной
-      buttonElement.classList.remove('popup__button-save_inactive');
-      buttonElement.removeAttribute('disabled');
+//     } else {
+//       // иначе сделай кнопку активной
+//       buttonElement.classList.remove('popup__button-save_inactive');
+//       buttonElement.removeAttribute('disabled');
       
-    }
-  }; 
+//     }
+//   }; 
 
 
 //==================================================================
