@@ -23,3 +23,23 @@
 .popup__user-about-error{
     top: 192px;
 }
+
+@media screen and (max-width: 600px) {
+    .popup__input-error {
+        font-size: 10px;
+        line-height: 12px;
+        width: 238px;
+    }
+    .popup__place-name-error{
+        top: 148px;
+    }
+    .popup__place-link-error{
+        top: 205px;
+    }
+    .popup__username-error{
+        top: 148px;
+    }
+    .popup__user-about-error{
+        top: 205px;
+    }
+}
