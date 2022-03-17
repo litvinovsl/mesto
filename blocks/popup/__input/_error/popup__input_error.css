@@ -1,0 +1,25 @@
+.popup__input_error{
+    border-bottom: 1px solid rgba(255, 3, 3, 0.8);
+}
+.popup__input-error{
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    visibility: hidden;
+    position: absolute;
+}
+.popup__input-error_active{
+    visibility: visible;
+}
+.popup__place-name-error{
+    top: 136px;
+}
+.popup__place-link-error{
+    top: 192px;
+}
+.popup__username-error{
+    top: 136px;
+}
+.popup__user-about-error{
+    top: 192px;
+}
