@@ -4,34 +4,66 @@ const editUserForm = document.querySelector('#popup-user');
 const profileUserName = document.querySelector('.profile__username');
 const profileUserAbout = document.querySelector('.profile__about-user');
 function openPopup(editUserForm){
-    if(editUserForm.classList.contains('popup_opened') === false){
-        editUserForm.classList.add('popup_opened');
+  if(editUserForm.classList.contains('popup_opened') === false){
+    editUserForm.classList.add('popup_opened');
     }
     const inputList = Array.from(editUserForm.querySelectorAll('.popup__input'));
     const buttonElement = editUserForm.querySelector('.popup__button-save');
-    toggleButtonState(inputList, buttonElement);
     const errorMessageAll = Array.from(document.querySelectorAll('.popup__input-error'));
+  if(buttonElement != null){
+    
+    toggleButtonState(inputList, buttonElement);
     errorMessageAll.forEach((errorMessage) =>{
       errorMessage.textContent = '';
     });
     inputList.forEach((inputElement) => {
       inputElement.classList.remove('popup__input_error');
     });
-};
+  };
+
+  const closePopupButton = editUserForm.querySelector('.popup__button-close');
+  closePopupButton.addEventListener('click', () => popupClose(editUserForm));
+  
+  document.addEventListener('keyup', keyHandler);
+}
+// document.addEventListener('keyup', function(e){
+//   if(e.key != 'Escape'){return;}
+//   const popup = document.querySelector('.popup_opened');
+//   if(popup != null){
+//     popup.classList.remove('popup_opened');
+//   }
+// })
+// function closeEscape(evt) {
+//   console.log(evt.key);
+//     if (evt.key === 'Escape') {
+//       popupClose(editUserForm);
+//       };
+// };
+function keyHandler(e){
+  console.log(e.key);
+  if(e.key != 'Escape'){return;}
+  const popup = document.querySelector('.popup_opened');
+  if(popup != null){
+    popup.classList.remove('popup_opened');
+  }
+  document.removeEventListener('keyup',keyHandler);
+}
 function popupClose(editUserForm){
     editUserForm.classList.remove('popup_opened');
-
+    document.removeEventListener('keyup',keyHandler);
 };
+
+
 editButt.addEventListener('click', function(){
     jobInput.value = profileUserAbout.textContent;
     nameInput.value = profileUserName.textContent;
     openPopup(editUserForm);
 }); 
 //закрыть форму
-const closeEditButt = document.querySelector('.popup__button-close');
-closeEditButt.addEventListener('click', function(){
-    popupClose(editUserForm);
-}); 
+// const closeEditButt = document.querySelector('.popup__button-close');
+// closeEditButt.addEventListener('click', function(){
+//     popupClose(editUserForm);
+// }); 
 //запись данных из инпутов
 // Находим форму в DOM
 const formElement = document.forms.formProfile;
@@ -127,13 +159,13 @@ overlayOpenCard.addEventListener('click', function(){
   popupClose(popupCard);
 });
 //закрытие попапов нажатием на esc
-function keyHandler(evt) {
-  if (evt.key === 'Escape') {
-    popupClose(editUserForm);
-    popupClose(popupCreate);
-  }
-}
-nameInput.addEventListener('keydown', keyHandler);
-jobInput.addEventListener('keydown', keyHandler);
-placeImg.addEventListener('keydown', keyHandler);
-namePlace.addEventListener('keydown', keyHandler);
+// function keyHandler(evt) {
+//   if (evt.key === 'Escape') {
+//     popupClose(editUserForm);
+//     popupClose(popupCreate);
+//   }
+// }
+// nameInput.addEventListener('keydown', keyHandler);
+// jobInput.addEventListener('keydown', keyHandler);
+// placeImg.addEventListener('keydown', keyHandler);
+// namePlace.addEventListener('keydown', keyHandler);
