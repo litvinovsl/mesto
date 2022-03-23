@@ -1,24 +1,26 @@
-// Функция, которая добавляет класс с ошибкой
-const showInputError = (formElement, inputElement, errorMessage, ) => {
-  const formError = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.add('popup__input_error');
-  formError.textContent = errorMessage;
-  formError.classList.add('popup__input-error_active');
-};
 const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   buttonSelector: '.popup__button-save',
-  inputError: '.popup__input_error',
-  inputSpanError: '.'
+  inputError: 'popup__input_error',
+  inputSpanError: 'popup__input-error_active',
+  buttonSelectorInactive: 'popup__button-save_inactive'
 }
-// Функция, которая удаляет класс с ошибкой
-const hideInputError = (formElement, inputElement) => {
+
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
 
-  inputElement.classList.remove('popup__input_error');
-  formError.classList.remove('popup__input-error_active');
+  inputElement.classList.add(settings.inputError);
+  formError.textContent = errorMessage;
+  formError.classList.add(settings.inputSpanError);
+};
+
+// Функция, которая удаляет класс с ошибкой
+const hideInputError = (formElement, inputElement, settings) => {
+  const formError = formElement.querySelector(`.${inputElement.id}-error`);
+
+  inputElement.classList.remove(settings.inputError);
+  formError.classList.remove(settings.inputSpanError);
   formError.textContent = '';
 };
 
@@ -36,18 +38,17 @@ const hasInvalidInput = (inputList) => {
 
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, settings) => {
   if (buttonElement === null) { return }
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    buttonElement.classList.add('popup__button-save_inactive');
-
+    buttonElement.classList.add(settings.buttonSelectorInactive);
     buttonElement.setAttribute('disabled', true);
 
   } else {
     // иначе сделай кнопку активной
-    buttonElement.classList.remove('popup__button-save_inactive');
+    buttonElement.classList.remove(settings.buttonSelectorInactive);
     buttonElement.removeAttribute('disabled');
 
   }
@@ -59,7 +60,7 @@ const setEventListeners = (formElement, settings) => {
   // сделаем из них массив методом Array.from
   const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
   const buttonElement = formElement.querySelector(settings.buttonSelector);
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, settings);
 
   // Обойдём все элементы полученной коллекции
   inputList.forEach((inputElement) => {
@@ -67,10 +68,10 @@ const setEventListeners = (formElement, settings) => {
     inputElement.addEventListener('input', () => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
-      isValid(formElement, inputElement);
+      isValid(formElement, inputElement, settings);
 
       // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement, settings);
     });
   });
 };
@@ -97,32 +98,13 @@ const enableValidation = (settings) => {
 // Вызовем функцию
 enableValidation(validationSettings); 
 
-// function enableValidationOld(settings) {
-//   for (const formSelector of settings.formSelectors) {
-//     const formElement = document.querySelector(formSelector);
-//     formElement.addEventListener('submit', (evt) => {
-//       // У каждой формы отменим стандартное поведение
-//       evt.preventDefault();
-//     });
-//     // Для каждой формы вызовем функцию setEventListeners,
-//     // передав ей элемент формы
-//     setEventListeners(formElement, settings);
-//   }
-// }
-// const validationSettingsOld = {
-//   formSelectors: ['.popup-card', '#popup-user', '#popup-create'],
-//   inputSelector: '.popup__input',
-//   buttonSelector: '.popup__button-save'
-// }
-// enableValidation(validationSettingsOld);
-
-const isValid = (formElement, inputElement) => {
+const isValid = (formElement, inputElement, settings) => {
   if (!inputElement.validity.valid) {
     // Если поле не проходит валидацию, покажем ошибку
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, settings);
   } else {
     // Если проходит, скроем
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, settings);
   }
 };
 

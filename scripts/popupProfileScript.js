@@ -1,4 +1,5 @@
 //открыть форму
+
 const editButt = document.querySelector('.profile__edit-butt');
 const editUserForm = document.querySelector('#popup-user');
 const profileUserName = document.querySelector('.profile__username');
@@ -11,7 +12,7 @@ function openPopup(popup) {
   const errorMessageAll = Array.from(document.querySelectorAll('.popup__input-error'));
   if (buttonElement != null) {
 
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, validationSettings);
     errorMessageAll.forEach((errorMessage) => {
       errorMessage.textContent = '';
     });
