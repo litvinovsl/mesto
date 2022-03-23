@@ -1,12 +1,18 @@
 // Функция, которая добавляет класс с ошибкой
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, ) => {
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add('popup__input_error');
   formError.textContent = errorMessage;
   formError.classList.add('popup__input-error_active');
 };
-
+const validationSettings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  buttonSelector: '.popup__button-save',
+  inputError: '.popup__input_error',
+  inputSpanError: '.'
+}
 // Функция, которая удаляет класс с ошибкой
 const hideInputError = (formElement, inputElement) => {
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
@@ -70,24 +76,45 @@ const setEventListeners = (formElement, settings) => {
 };
 
 
-function enableValidation(settings) {
-  for (const formSelector of settings.formSelectors) {
-    const formElement = document.querySelector(formSelector);
+const enableValidation = (settings) => {
+  // Найдём все формы с указанным классом в DOM,
+  // сделаем из них массив методом Array.from
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
+
+  // Переберём полученную коллекцию
+  formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       // У каждой формы отменим стандартное поведение
       evt.preventDefault();
     });
+
     // Для каждой формы вызовем функцию setEventListeners,
     // передав ей элемент формы
     setEventListeners(formElement, settings);
-  }
-}
-const validationSettings = {
-  formSelectors: ['#popup-card', '#popup-user', '#popup-create'],
-  inputSelector: '.popup__input',
-  buttonSelector: '.popup__button-save'
-}
-enableValidation(validationSettings);
+  });
+};
+
+// Вызовем функцию
+enableValidation(validationSettings); 
+
+// function enableValidationOld(settings) {
+//   for (const formSelector of settings.formSelectors) {
+//     const formElement = document.querySelector(formSelector);
+//     formElement.addEventListener('submit', (evt) => {
+//       // У каждой формы отменим стандартное поведение
+//       evt.preventDefault();
+//     });
+//     // Для каждой формы вызовем функцию setEventListeners,
+//     // передав ей элемент формы
+//     setEventListeners(formElement, settings);
+//   }
+// }
+// const validationSettingsOld = {
+//   formSelectors: ['.popup-card', '#popup-user', '#popup-create'],
+//   inputSelector: '.popup__input',
+//   buttonSelector: '.popup__button-save'
+// }
+// enableValidation(validationSettingsOld);
 
 const isValid = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
