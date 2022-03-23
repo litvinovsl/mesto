@@ -1,28 +1,13 @@
 //открыть форму
-
 const editButt = document.querySelector('.profile__edit-butt');
 const editUserForm = document.querySelector('#popup-user');
 const profileUserName = document.querySelector('.profile__username');
 const profileUserAbout = document.querySelector('.profile__about-user');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  
-  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
-  const buttonElement = popup.querySelector('.popup__button-save');
-  const errorMessageAll = Array.from(document.querySelectorAll('.popup__input-error'));
-  if (buttonElement != null) {
-
-    toggleButtonState(inputList, buttonElement, validationSettings);
-    errorMessageAll.forEach((errorMessage) => {
-      errorMessage.textContent = '';
-    });
-    inputList.forEach((inputElement) => {
-      inputElement.classList.remove('popup__input_error');
-    });
-  };
 
   const closePopupButton = popup.querySelector('.popup__button-close');
-  closePopupButton.addEventListener('click', () => closePopup(popup));
+  closePopupButton.addEventListener('click', () => closePopup(popup), { once: true });
 
   document.addEventListener('keyup', handleEscKey);
 }
@@ -32,15 +17,28 @@ function handleEscKey(e) {
   const popup = document.querySelector('.popup_opened');
   if (popup != null) {
     closePopup(popup);
-    // popup.classList.remove('popup_opened');
   }
-  // document.removeEventListener('keyup', handleEscKey);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keyup', handleEscKey);
 };
+
+function cleanInputError(popup) {
+  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+  const buttonElement = popup.querySelector('.popup__button-save');
+  const errorMessageAll = Array.from(document.querySelectorAll('.popup__input-error'));
+  toggleButtonState(inputList, buttonElement, validationSettings);
+  errorMessageAll.forEach((errorMessage) => {
+    errorMessage.textContent = '';
+  });
+  inputList.forEach((inputElement) => {
+    inputElement.classList.remove('popup__input_error');
+  });
+}
+
 editButt.addEventListener('click', function () {
+  cleanInputError(editUserForm);
   jobInput.value = profileUserAbout.textContent;
   nameInput.value = profileUserName.textContent;
   openPopup(editUserForm);
@@ -72,6 +70,7 @@ const placeImg = document.forms.formPlace.elements.placeLink;
 const namePlace = document.forms.formPlace.elements.placeName;
 //=============================================================
 plusButt.addEventListener('click', function () {
+  cleanInputError(popupCreate);
   namePlace.value = '';
   placeImg.value = '';
   openPopup(popupCreate);
@@ -115,6 +114,7 @@ const popupImage = document.querySelector('.popup__image');
 const popupImgName = document.querySelector('.popup__img-name');
 function createPopapCard(img, name) {
   popupImage.src = img;
+  popupImage.alt = name;
   popupImgName.textContent = name;
 }
 document.forms.formPlace.addEventListener('submit', function (evt) {
@@ -142,14 +142,3 @@ overlayCreateCard.addEventListener('click', function () {
 overlayOpenCard.addEventListener('click', function () {
   closePopup(popupCard);
 });
-//закрытие попапов нажатием на esc
-// function keyHandler(evt) {
-//   if (evt.key === 'Escape') {
-//     closePopup(editUserForm);
-//     closePopup(popupCreate);
-//   }
-// }
-// nameInput.addEventListener('keydown', keyHandler);
-// jobInput.addEventListener('keydown', keyHandler);
-// placeImg.addEventListener('keydown', keyHandler);
-// namePlace.addEventListener('keydown', keyHandler);

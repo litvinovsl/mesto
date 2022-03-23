@@ -96,7 +96,7 @@ const enableValidation = (settings) => {
 };
 
 // Вызовем функцию
-enableValidation(validationSettings); 
+enableValidation(validationSettings);
 
 const isValid = (formElement, inputElement, settings) => {
   if (!inputElement.validity.valid) {
