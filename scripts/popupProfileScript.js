@@ -39,7 +39,8 @@ editButt.addEventListener('click', function () {
   openPopup(editUserForm);
   cleanInputError(editUserForm);
 });
-document.querySelector('#popup-user-close').addEventListener('click',function () {
+const popupUserClose = document.querySelector('#popup-user-close');
+popupUserClose.addEventListener('click',function () {
   closePopup(editUserForm);
 });
 //запись данных из инпутов
