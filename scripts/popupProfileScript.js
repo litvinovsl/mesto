@@ -5,10 +5,6 @@ const profileUserName = document.querySelector('.profile__username');
 const profileUserAbout = document.querySelector('.profile__about-user');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-
-  const closePopupButton = popup.querySelector('.popup__button-close');
-  closePopupButton.addEventListener('click', () => closePopup(popup), { once: true });
-
   document.addEventListener('keyup', handleEscKey);
 }
 function handleEscKey(e) {
@@ -38,17 +34,20 @@ function cleanInputError(popup) {
 }
 
 editButt.addEventListener('click', function () {
-  cleanInputError(editUserForm);
   jobInput.value = profileUserAbout.textContent;
   nameInput.value = profileUserName.textContent;
   openPopup(editUserForm);
+  cleanInputError(editUserForm);
+});
+document.querySelector('#popup-user-close').addEventListener('click',function () {
+  closePopup(editUserForm);
 });
 //запись данных из инпутов
 // Находим форму в DOM
-const formElement = document.forms.profileForm;
+const profileForm = document.forms.profileForm;
 // Находим поля формы в DOM
-const nameInput = formElement.elements.name;
-const jobInput = formElement.elements.aboutUser;
+const nameInput = profileForm.elements.name;
+const jobInput = profileForm.elements.aboutUser;
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function handleProfileFormSubmit(evt) {
@@ -61,7 +60,7 @@ function handleProfileFormSubmit(evt) {
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', handleProfileFormSubmit);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 //=========================================================================================
 const plusButt = document.querySelector('.profile__add-button');
 const createCloseButt = document.querySelector('#popup-card-close');
@@ -70,10 +69,11 @@ const placeImg = document.forms.formPlace.elements.placeLink;
 const namePlace = document.forms.formPlace.elements.placeName;
 //=============================================================
 plusButt.addEventListener('click', function () {
-  cleanInputError(popupCreate);
+  
   namePlace.value = '';
   placeImg.value = '';
   openPopup(popupCreate);
+  cleanInputError(popupCreate);
 });
 createCloseButt.addEventListener('click', function () {
   closePopup(popupCreate);
