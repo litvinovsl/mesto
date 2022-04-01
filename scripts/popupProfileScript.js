@@ -79,55 +79,7 @@ plusButt.addEventListener('click', function () {
 createCloseButt.addEventListener('click', function () {
   closePopup(popupCreate);
 });
-//==========================================================================================
-const cardContainer = document.querySelector('.elements');
-const createButt = document.querySelector('#create-button');
-const popupCard = document.querySelector('#popup-card');
-const cardTemplate = document.querySelector('#card-template').content;
-// появление 6 начальных картинок из массива объектов
-initialCards.forEach(function (li) {
-  const cardElement = createCard(li.link, li.name);
-  cardContainer.append(cardElement);
-});
-function createCard(cardImage, cardName) {
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  const elementImage = cardElement.querySelector('.element__image');
-  elementImage.src = cardImage;
-  elementImage.alt = cardName;
-  cardElement.querySelector('.element__name').textContent = cardName;
-  cardElement.querySelector('.element__delete').addEventListener('click', function (evt) {
-    cardElement.remove();
-    // evt.target.parentElement.remove();
-  });//удаление карточки путем удаления родительского элемента кнопки
-  cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active');
-  });//установка лайка по клику
-  elementImage.addEventListener('click', function (evt) {
-    createPopapCard(cardImage, cardName);
-    openPopup(popupCard);
-  });
-  return cardElement;
-}
-function addCard(container, cardElement) {
-  container.prepend(cardElement); //установка карточек в начало контенера
-};
-const popupImage = document.querySelector('.popup__image');
-const popupImgName = document.querySelector('.popup__img-name');
-function createPopapCard(img, name) {
-  popupImage.src = img;
-  popupImage.alt = name;
-  popupImgName.textContent = name;
-}
-document.forms.formPlace.addEventListener('submit', function (evt) {
-  evt.preventDefault();
-  cardContainer.prepend(createCard(placeImg.value, namePlace.value));
-  closePopup(popupCreate);
-});
-//===================================================================
-const popupPrewClose = document.querySelector('#popup-closeCard');
-popupPrewClose.addEventListener('click', function () {
-  closePopup(popupCard);
-});
+
 //==================================================================
 //закрытие попапов нажатием на фон
 const overlayProfile = document.querySelector('#overlayProfile');
