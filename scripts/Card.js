@@ -45,20 +45,10 @@ export class Card {
 
     //* Метод закрытия на ESC
     _handleEscClose(evt) {
-        console.log(evt.key);
         if (evt.key === "Escape") {
             this._handleClosePopup();
         }
     }
-
-    // _handleEscKey(evt) {
-    //     console.log(evt.key);
-    //     if (evt.key != 'Escape') { return; }
-
-    //     if (this._popupCard.classList.contains('popup_opened')) {
-    //         this._handleClosePopup();
-    //     }
-    // }
 
     _setEventListeners() {
         this._element.querySelector('.element__image').addEventListener('click', () => {
