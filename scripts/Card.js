@@ -1,13 +1,12 @@
 export class Card {
-    constructor(data, selector, cardSelector) {
+    constructor(data, selector, cardSelector, openPopup) {
         this._title = data.name;
         this._image = data.link;
         this._cardSelector = cardSelector;
         this._popupName = selector.popupName;
         this._popupImg = selector.popupImg;
         this._popupCard = selector.popupCard;
-        this._overlayOpenCard = selector.overlayOpenCard;
-
+        this._openPopup = openPopup;
     }
 
     _getTemplate() {
@@ -19,7 +18,10 @@ export class Card {
         this._element = this._getTemplate();
         this._setEventListeners();
 
-        this._element.querySelector('.element__image').src = this._image;
+        this._elementImage = this._element.querySelector('.element__image');
+
+        this._elementImage.src = this._image;
+        this._elementImage.alt = this._title;
         this._element.querySelector('.element__name').textContent = this._title;
 
         return this._element;
@@ -27,36 +29,15 @@ export class Card {
 
     _handleOpenPopup() {
         this._popupImg.src = this._image;
+        this._popupImg.alt = this._title;
         this._popupName.textContent = this._title;
-        this._popupCard.classList.add('popup_opened');
-        document.addEventListener("keyup",(evt) => {
-            this._handleEscClose(evt);
-        } );
+        this._openPopup(this._popupCard);
     }
 
-    _handleClosePopup() {
-        document.removeEventListener("keyup",(evt) => {
-            this._handleEscClose(evt);
-        });
-        this._popupImg.src = '';
-        this._popupName.textContent = '';
-        this._popupCard.classList.remove('popup_opened');
-    }
-
-    //* Метод закрытия на ESC
-    _handleEscClose(evt) {
-        if (evt.key === "Escape") {
-            this._handleClosePopup();
-        }
-    }
-
+   
     _setEventListeners() {
         this._element.querySelector('.element__image').addEventListener('click', () => {
             this._handleOpenPopup();
-        });
-
-        document.querySelector('#popup-closeCard').addEventListener('click', () => {
-            this._handleClosePopup();
         });
 
         this._element.querySelector('.element__like').addEventListener('click', (evt) => {
@@ -66,9 +47,5 @@ export class Card {
         this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
             this._element.remove();
         })
-
-        overlayOpenCard.addEventListener('click', () => {
-            this._handleClosePopup();
-        });
     }
 }

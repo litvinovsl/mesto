@@ -17,12 +17,11 @@ export class FormValidator {
     this._inputSpanError = settings.inputSpanError;
     this._buttonSelectorInactive = settings.buttonSelectorInactive;
     this._inputs = Array.from(this._popupForm.querySelectorAll(this._inputSelector));
-    this._errors = Array.from(this._popupForm.querySelectorAll(this._inputError));
+    this._errors = Array.from(this._popupForm.querySelectorAll('.popup__input-error'));
   }
 
   _isValid(element) {
     this._element = element;
-    this._errorElement = this._popupForm.querySelector(`#${this._element.id}-error`);
     !this._element.validity.valid
       ? this._showInputError()
       : this._hideInputError();
@@ -50,6 +49,19 @@ export class FormValidator {
     });
   }
 
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._errors.forEach((errorMessage) => {
+      errorMessage.textContent = '';
+    });
+    
+    this._inputs.forEach((inputElement) => {
+      inputElement.classList.remove(this._inputError);
+    });
+
+  }
+
   _toggleButtonState() {
     if (this._buttonSelector === null) { return }
     if (this._hasInvalidInput()) {
@@ -73,11 +85,9 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this._inputs.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      this._setEventListeners();
+    this._popupForm.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     });
-  };
+    this._setEventListeners();
+  }
 }
