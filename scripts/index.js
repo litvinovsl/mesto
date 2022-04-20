@@ -1,11 +1,24 @@
 import {validationSettings, FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
+import Popup from './Popup.js';
+import Section from './Section.js';
 
 //открыть форму
 const editButt = document.querySelector('.profile__edit-butt');
 const editUserForm = document.querySelector('#popup-user');
 const profileUserName = document.querySelector('.profile__username');
 const profileUserAbout = document.querySelector('.profile__about-user');
+
+//============================================================================
+
+// const popupUser = new Popup(editUserForm);
+
+
+
+
+//============================================================================
+
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', handleEscKey);
@@ -62,8 +75,8 @@ function handleProfileFormSubmit(evt) {
   profileUserName.textContent = nameInput.value;
   closePopup(editUserForm);
 }
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
+// // Прикрепляем обработчик к форме:
+// // он будет следить за событием “submit” - «отправка»
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 plusButt.addEventListener('click', function () {
@@ -142,6 +155,17 @@ initialCards.forEach((item) => {
 popupCardClose.addEventListener('click', () => {
   closePopup(popupCard);
 })
+
+//=================================================================
+const cardSection = new Section({
+  items: initialCards, 
+  renderer: (item) => {
+    const card = new Card(item, cardSel, '#card-template', openPopup);
+    const cardElement = card.generateCard();
+    // this.addItem(cardElement);
+    return cardElement
+  },  
+}, '.elements');
 
 //==================================================================
 //закрытие попапов нажатием на фон
