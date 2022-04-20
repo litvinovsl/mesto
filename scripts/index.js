@@ -128,47 +128,34 @@ const cardSel = {
   overlayOpenCard: document.querySelector('#overlayOpenCard'),
 }
 
-function createCard(item) {
-  const card = new Card(item, cardSel, '#card-template', openPopup);
-  const cardElement = card.generateCard();
-  return cardElement
-}
+const cardSection = new Section({
+  items: initialCards, 
+  renderer: (item) => {
+    const card = new Card(item, cardSel, '#card-template', openPopup);
+    const cardElement = card.generateCard();
+    return cardElement
+  },  
+}, '.elements');
 
 document.forms.formPlace.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  const obj = {
+  const item = {
     name: document.forms.formPlace.elements.placeName.value,
     link: document.forms.formPlace.elements.placeLink.value,
   }
-
-  const cardElement = createCard(obj);
-  cardContainer.prepend(cardElement); 
+  cardSection.renderItems([item]);
   closePopup(popupCreate);
-})
-
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  cardContainer.prepend(cardElement); 
 })
 
 popupCardClose.addEventListener('click', () => {
   closePopup(popupCard);
 })
 
-//=================================================================
-const cardSection = new Section({
-  items: initialCards, 
-  renderer: (item) => {
-    const card = new Card(item, cardSel, '#card-template', openPopup);
-    const cardElement = card.generateCard();
-    // this.addItem(cardElement);
-    return cardElement
-  },  
-}, '.elements');
-
 //==================================================================
+
 //закрытие попапов нажатием на фон
+
 const overlayProfile = document.querySelector('#overlayProfile');
 const overlayCreateCard = document.querySelector('#overlayCreateCard');
 const overlayOpenCard = document.querySelector('#overlayOpenCard');
