@@ -2,6 +2,8 @@ import {validationSettings, FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+
 
 //открыть форму
 const editButt = document.querySelector('.profile__edit-butt');
@@ -11,7 +13,16 @@ const profileUserAbout = document.querySelector('.profile__about-user');
 
 //============================================================================
 
-// const popupUser = new Popup(editUserForm);
+const popupUser = new PopupWithForm('#popup-user', (user) => {debugger
+
+});
+editButt.addEventListener('click', function () {
+  popupUser.open();
+  // jobInput.value = profileUserAbout.textContent;
+  // nameInput.value = profileUserName.textContent;
+  // openPopup(editUserForm);
+  // editPopupValidator.resetValidation();
+});
 
 
 
@@ -49,12 +60,12 @@ editPopupValidator.enableValidation();
 createPopupValidator.enableValidation();
 //==================================================================
 
-editButt.addEventListener('click', function () {
-  jobInput.value = profileUserAbout.textContent;
-  nameInput.value = profileUserName.textContent;
-  openPopup(editUserForm);
-  editPopupValidator.resetValidation();
-});
+// editButt.addEventListener('click', function () {
+//   jobInput.value = profileUserAbout.textContent;
+//   nameInput.value = profileUserName.textContent;
+//   openPopup(editUserForm);
+//   editPopupValidator.resetValidation();
+// });
 const popupUserClose = document.querySelector('#popup-user-close');
 popupUserClose.addEventListener('click',function () {
   closePopup(editUserForm);
@@ -77,7 +88,7 @@ function handleProfileFormSubmit(evt) {
 }
 // // Прикрепляем обработчик к форме:
 // // он будет следить за событием “submit” - «отправка»
-profileForm.addEventListener('submit', handleProfileFormSubmit);
+// profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 plusButt.addEventListener('click', function () {
   
@@ -159,17 +170,17 @@ popupCardClose.addEventListener('click', () => {
 //==================================================================
 //закрытие попапов нажатием на фон
 
-const overlayProfile = document.querySelector('#overlayProfile');
-const overlayCreateCard = document.querySelector('#overlayCreateCard');
-const overlayOpenCard = document.querySelector('#overlayOpenCard');
+// const overlayProfile = document.querySelector('#overlayProfile');
+// const overlayCreateCard = document.querySelector('#overlayCreateCard');
+// const overlayOpenCard = document.querySelector('#overlayOpenCard');
 
-overlayProfile.addEventListener('click', function () {
-  closePopup(editUserForm);
-});
-overlayCreateCard.addEventListener('click', function () {
-  closePopup(popupCreate);
-});
-overlayOpenCard.addEventListener('click', function () {
-  closePopup(popupCard);
-});
+// overlayProfile.addEventListener('click', function () {
+//   closePopup(editUserForm);
+// });
+// overlayCreateCard.addEventListener('click', function () {
+//   closePopup(popupCreate);
+// });
+// overlayOpenCard.addEventListener('click', function () {
+//   closePopup(popupCard);
+// });
 //==================================================================
