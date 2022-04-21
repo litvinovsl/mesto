@@ -1,6 +1,7 @@
 import {validationSettings, FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
 import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
 
 //открыть форму
 const editButt = document.querySelector('.profile__edit-butt');
@@ -126,11 +127,15 @@ const cardSel = {
   popupCard: document.querySelector('#popup-card'),
   overlayOpenCard: document.querySelector('#overlayOpenCard'),
 }
+//==================================================================
 
+const imagePopup = new PopupWithImage('#popup-card');
+
+//==================================================================
 const cardSection = new Section({
   items: initialCards, 
   renderer: (item) => {
-    const card = new Card(item, cardSel, '#card-template', openPopup);
+    const card = new Card(item, cardSel, '#card-template', () => imagePopup.open(item.name, item.link));
     const cardElement = card.generateCard();
     return cardElement
   },  
@@ -152,7 +157,6 @@ popupCardClose.addEventListener('click', () => {
 })
 
 //==================================================================
-
 //закрытие попапов нажатием на фон
 
 const overlayProfile = document.querySelector('#overlayProfile');
