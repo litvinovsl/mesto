@@ -1,6 +1,5 @@
 import {validationSettings, FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
-import Popup from './Popup.js';
 import Section from './Section.js';
 
 //открыть форму
