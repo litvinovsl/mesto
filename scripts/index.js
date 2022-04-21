@@ -30,21 +30,21 @@ editButt.addEventListener('click', function () {
 //============================================================================
 
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keyup', handleEscKey);
-}
-function handleEscKey(e) {
-  if (e.key != 'Escape') { return; }
-  const popup = document.querySelector('.popup_opened');
-  if (popup != null) {
-    closePopup(popup);
-  }
-}
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', handleEscKey);
-};
+// function openPopup(popup) {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keyup', handleEscKey);
+// }
+// function handleEscKey(e) {
+//   if (e.key != 'Escape') { return; }
+//   const popup = document.querySelector('.popup_opened');
+//   if (popup != null) {
+//     closePopup(popup);
+//   }
+// }
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keyup', handleEscKey);
+// };
 
 //=========================================================================================
 const plusButt = document.querySelector('.profile__add-button');
@@ -67,9 +67,9 @@ createPopupValidator.enableValidation();
 //   editPopupValidator.resetValidation();
 // });
 const popupUserClose = document.querySelector('#popup-user-close');
-popupUserClose.addEventListener('click',function () {
-  closePopup(editUserForm);
-});
+// popupUserClose.addEventListener('click',function () {
+//   closePopup(editUserForm);
+// });
 //запись данных из инпутов
 // Находим форму в DOM
 const profileForm = document.forms.profileForm;
@@ -78,28 +78,28 @@ const nameInput = profileForm.elements.name;
 const jobInput = profileForm.elements.aboutUser;
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки. 
-  // Вставил новые значения с помощью textContent
-  profileUserAbout.textContent = jobInput.value;
-  profileUserName.textContent = nameInput.value;
-  closePopup(editUserForm);
-}
+// function handleProfileFormSubmit(evt) {
+//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+//   // Так мы можем определить свою логику отправки. 
+//   // Вставил новые значения с помощью textContent
+//   profileUserAbout.textContent = jobInput.value;
+//   profileUserName.textContent = nameInput.value;
+//   closePopup(editUserForm);
+// }
 // // Прикрепляем обработчик к форме:
 // // он будет следить за событием “submit” - «отправка»
 // profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-plusButt.addEventListener('click', function () {
+// plusButt.addEventListener('click', function () {
   
-  namePlace.value = '';
-  placeImg.value = '';
-  openPopup(popupCreate);
-  createPopupValidator.resetValidation();
-});
-createCloseButt.addEventListener('click', function () {
-  closePopup(popupCreate);
-});
+//   namePlace.value = '';
+//   placeImg.value = '';
+//   openPopup(popupCreate);
+//   createPopupValidator.resetValidation();
+// });
+// createCloseButt.addEventListener('click', function () {
+//   closePopup(popupCreate);
+// });
 
 const cardContainer = document.querySelector('.elements');
 const popupCard = document.querySelector('#popup-card');
@@ -160,12 +160,13 @@ document.forms.formPlace.addEventListener('submit', (evt) => {
     link: document.forms.formPlace.elements.placeLink.value,
   }
   cardSection.renderItems([item]);
-  closePopup(popupCreate);
+  
+  // closePopup(popupCreate);
 })
 
-popupCardClose.addEventListener('click', () => {
-  closePopup(popupCard);
-})
+// popupCardClose.addEventListener('click', () => {
+//   closePopup(popupCard);
+// })
 
 //==================================================================
 //закрытие попапов нажатием на фон
