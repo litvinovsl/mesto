@@ -20,17 +20,21 @@ const profileUserAbout = document.querySelector('.profile__about-user');
 
 
 function openPopup(popup) {
+  console.log('openPopup');
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', handleEscKey);
 }
-function handleEscKey(e) {
-  if (e.key != 'Escape') { return; }
-  const popup = document.querySelector('.popup_opened');
-  if (popup != null) {
-    closePopup(popup);
-  }
-}
+// function handleEscKey(e) {
+
+//   if (e.key != 'Escape') { return; }
+//   console.log('handleEsc');
+//   const popup = document.querySelector('.popup_opened');
+//   if (popup != null) {
+//     closePopup(popup);
+//   }
+// }
 function closePopup(popup) {
+  console.log('closePopup');
   popup.classList.remove('popup_opened');
   document.removeEventListener('keyup', handleEscKey);
 };
@@ -90,9 +94,9 @@ createCloseButt.addEventListener('click', function () {
   closePopup(popupCreate);
 });
 
-const cardContainer = document.querySelector('.elements');
-const popupCard = document.querySelector('#popup-card');
-const popupCardClose = document.querySelector('#popup-closeCard');
+// const cardContainer = document.querySelector('.elements');
+// const popupCard = document.querySelector('#popup-card');
+// const popupCardClose = document.querySelector('#popup-closeCard');
 
 export const initialCards = [
   {
@@ -131,11 +135,15 @@ const cardSel = {
 
 const imagePopup = new PopupWithImage('#popup-card');
 
+
 //==================================================================
 const cardSection = new Section({
   items: initialCards, 
   renderer: (item) => {
-    const card = new Card(item, cardSel, '#card-template', () => imagePopup.open(item.name, item.link));
+    const card = new Card(item, cardSel, '#card-template', () => {
+      imagePopup.open(item.name, item.link);
+      imagePopup.setEventListeners();
+    });
     const cardElement = card.generateCard();
     return cardElement
   },  
@@ -149,19 +157,18 @@ document.forms.formPlace.addEventListener('submit', (evt) => {
     link: document.forms.formPlace.elements.placeLink.value,
   }
   cardSection.renderItems([item]);
-  closePopup(popupCreate);
 })
 
-popupCardClose.addEventListener('click', () => {
-  closePopup(popupCard);
-})
+// popupCardClose.addEventListener('click', () => {
+//   closePopup(popupCard);
+// })
 
 //==================================================================
 //закрытие попапов нажатием на фон
 
 const overlayProfile = document.querySelector('#overlayProfile');
 const overlayCreateCard = document.querySelector('#overlayCreateCard');
-const overlayOpenCard = document.querySelector('#overlayOpenCard');
+// const overlayOpenCard = document.querySelector('#overlayOpenCard');
 
 overlayProfile.addEventListener('click', function () {
   closePopup(editUserForm);
@@ -169,7 +176,7 @@ overlayProfile.addEventListener('click', function () {
 overlayCreateCard.addEventListener('click', function () {
   closePopup(popupCreate);
 });
-overlayOpenCard.addEventListener('click', function () {
-  closePopup(popupCard);
-});
+// overlayOpenCard.addEventListener('click', function () {
+//   closePopup(popupCard);
+// });
 //==================================================================
