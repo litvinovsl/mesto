@@ -14,7 +14,6 @@ const profileUserAbout = document.querySelector('.profile__about-user');
 //============================================================================
 
 const popupUser = new PopupWithForm('#popup-user', (user) => {
-  console.log('popupUser callback', user);
   profileUserAbout.textContent = user.aboutUser;
   profileUserName.textContent = user.name;
 });
@@ -27,11 +26,35 @@ editButt.addEventListener('click', function () {
   popupUser.open(data);
   editPopupValidator.resetValidation();
 });
-
 //============================================================================
+const plusButt = document.querySelector('.profile__add-button');
+const createCloseButt = document.querySelector('#popup-card-close');
+const popupCreate = document.querySelector('#popup-create');
 
+const popupCreateCard = new PopupWithForm('#popup-create', (card) => {
+  console.log('popupCreate - card ', [card]);
+  cardSection.renderItems([card]);
+});
+popupCreateCard.setEventListeners();
 
+plusButt.addEventListener('click', function(){
+  const data = {
+    name: '',
+    link: ''
+  }
+  popupCreateCard.open(data);
+  createPopupValidator.resetValidation();
+})
 
+// document.forms.formPlace.addEventListener('submit', (evt) => {
+//   evt.preventDefault();
+
+//   const item = {
+//     name: document.forms.formPlace.elements.placeName.value,
+//     link: document.forms.formPlace.elements.placeLink.value,
+//   }
+//   cardSection.renderItems([item]);
+// })
 //============================================================================
 
 
@@ -52,9 +75,7 @@ editButt.addEventListener('click', function () {
 // };
 
 //=========================================================================================
-const plusButt = document.querySelector('.profile__add-button');
-const createCloseButt = document.querySelector('#popup-card-close');
-const popupCreate = document.querySelector('#popup-create');
+
 const placeImg = document.forms.formPlace.elements.placeLink;
 const namePlace = document.forms.formPlace.elements.placeName;
 //=============================================================
@@ -146,6 +167,7 @@ const cardSel = {
 //==================================================================
 
 const imagePopup = new PopupWithImage('#popup-card');
+imagePopup.setEventListeners();
 
 //==================================================================
 const cardSection = new Section({
@@ -153,22 +175,22 @@ const cardSection = new Section({
   renderer: (item) => {
     const card = new Card(item, cardSel, '#card-template', () => {
       imagePopup.open(item.name, item.link);
-      imagePopup.setEventListeners();
+      
     });
     const cardElement = card.generateCard();
     return cardElement
   },  
 }, '.elements');
 
-document.forms.formPlace.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+// document.forms.formPlace.addEventListener('submit', (evt) => {
+//   evt.preventDefault();
 
-  const item = {
-    name: document.forms.formPlace.elements.placeName.value,
-    link: document.forms.formPlace.elements.placeLink.value,
-  }
-  cardSection.renderItems([item]);
-})
+//   const item = {
+//     name: document.forms.formPlace.elements.placeName.value,
+//     link: document.forms.formPlace.elements.placeLink.value,
+//   }
+//   cardSection.renderItems([item]);
+// })
 
 // popupCardClose.addEventListener('click', () => {
 //   closePopup(popupCard);
