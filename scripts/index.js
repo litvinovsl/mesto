@@ -3,6 +3,8 @@ import {Card} from './Card.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
+import UserInfo from './UserInfo.js';
 
 
 //открыть форму
@@ -12,6 +14,9 @@ const profileUserName = document.querySelector('.profile__username');
 const profileUserAbout = document.querySelector('.profile__about-user');
 
 //============================================================================
+
+const UserInfo = new UserInfo({nameSelector: '.profile__username', aboutSelector: '.profile__about-user'});
+
 
 const popupUser = new PopupWithForm('#popup-user', (user) => {
   profileUserAbout.textContent = user.aboutUser;
