@@ -101,9 +101,9 @@ const jobInput = profileForm.elements.aboutUser;
 //   closePopup(popupCreate);
 // });
 
-const cardContainer = document.querySelector('.elements');
-const popupCard = document.querySelector('#popup-card');
-const popupCardClose = document.querySelector('#popup-closeCard');
+// const cardContainer = document.querySelector('.elements');
+// const popupCard = document.querySelector('#popup-card');
+// const popupCardClose = document.querySelector('#popup-closeCard');
 
 export const initialCards = [
   {
@@ -146,7 +146,10 @@ const imagePopup = new PopupWithImage('#popup-card');
 const cardSection = new Section({
   items: initialCards, 
   renderer: (item) => {
-    const card = new Card(item, cardSel, '#card-template', () => imagePopup.open(item.name, item.link));
+    const card = new Card(item, cardSel, '#card-template', () => {
+      imagePopup.open(item.name, item.link);
+      imagePopup.setEventListeners();
+    });
     const cardElement = card.generateCard();
     return cardElement
   },  
@@ -160,8 +163,6 @@ document.forms.formPlace.addEventListener('submit', (evt) => {
     link: document.forms.formPlace.elements.placeLink.value,
   }
   cardSection.renderItems([item]);
-  
-  // closePopup(popupCreate);
 })
 
 // popupCardClose.addEventListener('click', () => {
