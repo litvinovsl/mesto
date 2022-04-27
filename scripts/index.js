@@ -13,17 +13,22 @@ const profileUserAbout = document.querySelector('.profile__about-user');
 
 //============================================================================
 
-const popupUser = new PopupWithForm('#popup-user', (user) => {debugger
-
+const popupUser = new PopupWithForm('#popup-user', (user) => {
+  console.log('popupUser callback', user);
+  profileUserAbout.textContent = user.aboutUser;
+  profileUserName.textContent = user.name;
 });
+popupUser.setEventListeners();
 editButt.addEventListener('click', function () {
-  popupUser.open();
-  // jobInput.value = profileUserAbout.textContent;
-  // nameInput.value = profileUserName.textContent;
-  // openPopup(editUserForm);
-  // editPopupValidator.resetValidation();
+  const data = {
+    name: profileUserName.textContent,
+    aboutUser: profileUserAbout.textContent
+  }
+  popupUser.open(data);
+  editPopupValidator.resetValidation();
 });
 
+//============================================================================
 
 
 
