@@ -1,12 +1,14 @@
 export class Card {
-    constructor(data, selector, cardSelector, openPopup) {
+    constructor(data, selector, cardSelector, handleCardClick) {
+        console.log('card constructor: ', data, selector, cardSelector, handleCardClick);
         this._title = data.name;
         this._image = data.link;
         this._cardSelector = cardSelector;
         this._popupName = selector.popupName;
         this._popupImg = selector.popupImg;
         this._popupCard = selector.popupCard;
-        this._openPopup = openPopup;
+        this._handleCardClick = handleCardClick;
+        
     }
 
     _getTemplate() {
@@ -31,7 +33,7 @@ export class Card {
         this._popupImg.src = this._image;
         this._popupImg.alt = this._title;
         this._popupName.textContent = this._title;
-        this._openPopup(this._popupCard);
+        this._handleCardClick(this._popupCard);
     }
 
    
