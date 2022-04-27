@@ -4,7 +4,6 @@ import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
-import UserInfo from './UserInfo.js';
 
 
 //открыть форму
@@ -15,19 +14,17 @@ const profileUserAbout = document.querySelector('.profile__about-user');
 
 //============================================================================
 
-const UserInfo = new UserInfo({nameSelector: '.profile__username', aboutSelector: '.profile__about-user'});
+const userInfo = new UserInfo({nameSelector: '.profile__username', aboutSelector: '.profile__about-user'});
 
 
 const popupUser = new PopupWithForm('#popup-user', (user) => {
-  profileUserAbout.textContent = user.aboutUser;
-  profileUserName.textContent = user.name;
+  userInfo.setUserInfo(user);
 });
 popupUser.setEventListeners();
 editButt.addEventListener('click', function () {
-  const data = {
-    name: profileUserName.textContent,
-    aboutUser: profileUserAbout.textContent
-  }
+  console.log(userInfo.getUserInfo());
+
+  const data = userInfo.getUserInfo();
   popupUser.open(data);
   editPopupValidator.resetValidation();
 });
