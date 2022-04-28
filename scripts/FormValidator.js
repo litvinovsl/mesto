@@ -1,13 +1,13 @@
-export const validationSettings = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  buttonSelector: '.popup__button-save',
-  inputError: 'popup__input_error',
-  inputSpanError: 'popup__input-error_active',
-  buttonSelectorInactive: 'popup__button-save_inactive'
-}
+// export const validationSettings = {
+//   formSelector: '.popup__form',
+//   inputSelector: '.popup__input',
+//   buttonSelector: '.popup__button-save',
+//   inputError: 'popup__input_error',
+//   inputSpanError: 'popup__input-error_active',
+//   buttonSelectorInactive: 'popup__button-save_inactive'
+// }
 
-export class FormValidator {
+export default class FormValidator {
   constructor(settings, popupForm) {
     this._popupForm = popupForm;
     this._formSelector = settings.formSelector;
