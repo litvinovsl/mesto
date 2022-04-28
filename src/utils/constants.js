@@ -15,7 +15,7 @@ export const validationSettings = {
     inputError: 'popup__input_error',
     inputSpanError: 'popup__input-error_active',
     buttonSelectorInactive: 'popup__button-save_inactive'
-  }
+};
 export const initialCards = [
   {
     name: 'Архыз',
