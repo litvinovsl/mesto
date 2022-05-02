@@ -23,7 +23,8 @@ popupUser.setEventListeners();
 editButt.addEventListener('click', function () {
 
   const data = userInfo.getUserInfo();
-  popupUser.open(data);
+  popupUser.open();
+  popupUser.fillingInputs(data);
   editPopupValidator.resetValidation();
 });
 
@@ -33,13 +34,9 @@ const popupCreateCard = new PopupWithForm('#popup-create', (card) => {
 popupCreateCard.setEventListeners();
 
 plusButt.addEventListener('click', function(){
-  const data = {
-    name: '',
-    link: ''
-  }
-  popupCreateCard.open(data);
+  popupCreateCard.open();
   createPopupValidator.resetValidation();
-})
+});
 
 const editPopupValidator = new FormValidator(validationSettings, editUserForm);
 const createPopupValidator = new FormValidator(validationSettings, popupCreate);
