@@ -16,8 +16,8 @@ import {
 } from '../utils/constants.js';
 
 function createCard(item){
-  const card = new Card(item, cardSel, '#card-template', () => {
-    imagePopup.open(item.name, item.link);
+  const card = new Card(item, '#card-template', (data) => {
+    imagePopup.open(data.name, data.link);
   });
   const cardElement = card.generateCard();
   return cardElement
@@ -36,17 +36,15 @@ editButt.addEventListener('click', function () {
   editPopupValidator.resetValidation();
 });
 
-const popupCreateCard = new PopupWithForm('#popup-create', (card) => {
-  cardSection.renderItems([card]);
-
-  // const cardElement = createCard(item);
-  // this.addItem(cardElement);
+const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
+  const cardElement = createCard(item);
+  cardSection.addItem(cardElement);
 });
 popupCreateCard.setEventListeners();
 
 plusButt.addEventListener('click', function(){
-  popupCreateCard.open();
   createPopupValidator.resetValidation();
+  popupCreateCard.open();
 });
 
 const editPopupValidator = new FormValidator(validationSettings, editUserForm);
