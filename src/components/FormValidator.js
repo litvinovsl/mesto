@@ -8,28 +8,28 @@ export default class FormValidator {
     this._inputSpanError = settings.inputSpanError;
     this._buttonSelectorInactive = settings.buttonSelectorInactive;
     this._inputs = Array.from(this._popupForm.querySelectorAll(this._inputSelector));
-    this._errors = Array.from(this._popupForm.querySelectorAll(settings.error));
+    this._errors = Array.from(this._popupForm.querySelectorAll(settings.errorSelector));
   }
 
   _isValid(element) {
-    this._element = element;
-    !this._element.validity.valid
-      ? this._showInputError()
-      : this._hideInputError();
+    !element.validity.valid
+      ? this._showInputError(element)
+      : this._hideInputError(element);
   }
 
-  _showInputError() {
-    const formError = this._popupForm.querySelector(`.${this._element.id}-error`);
-
-    this._element.classList.add(this._inputError);
-    formError.textContent = this._element.validationMessage;
+  _showInputError(element) {
+    const formError = this._popupForm.querySelector(`.${element.id}-error`);
+    
+    element.classList.add(this._inputError);
+    formError.textContent = element.validationMessage;
     formError.classList.add(this._inputSpanError);
   }
 
-  _hideInputError() {
-    const formError = this._popupForm.querySelector(`.${this._element.id}-error`);
+  _hideInputError(element) {
+    console.log('_hideInputError - this ', element)
+    const formError = this._popupForm.querySelector(`.${element.id}-error`);
 
-    this._element.classList.remove(this._inputError);
+    element.classList.remove(this._inputError);
     formError.classList.remove(this._inputSpanError);
     formError.textContent = '';
   }
@@ -42,17 +42,9 @@ export default class FormValidator {
 
   resetValidation() {
     this._toggleButtonState();
-
-    this._errors.forEach((errorMessage) => {
-      errorMessage.textContent = '';
-
-    });
-    
     this._inputs.forEach((inputElement) => {
-      inputElement.classList.remove(this._inputError);
-      
+      this._hideInputError(inputElement);
     });
-
   }
 
   _toggleButtonState() {

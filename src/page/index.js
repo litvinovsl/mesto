@@ -15,6 +15,14 @@ import {
   validationSettings
 } from '../utils/constants.js';
 
+function createCard(item){
+  const card = new Card(item, cardSel, '#card-template', () => {
+    imagePopup.open(item.name, item.link);
+  });
+  const cardElement = card.generateCard();
+  return cardElement
+}
+
 const userInfo = new UserInfo({nameSelector: '.profile__username', aboutSelector: '.profile__about-user'});
 const popupUser = new PopupWithForm('#popup-user', (user) => {
   userInfo.setUserInfo(user);
@@ -23,13 +31,16 @@ popupUser.setEventListeners();
 editButt.addEventListener('click', function () {
 
   const data = userInfo.getUserInfo();
+  popupUser.fillInputs(data);
   popupUser.open();
-  popupUser.fillingInputs(data);
   editPopupValidator.resetValidation();
 });
 
 const popupCreateCard = new PopupWithForm('#popup-create', (card) => {
   cardSection.renderItems([card]);
+
+  // const cardElement = createCard(item);
+  // this.addItem(cardElement);
 });
 popupCreateCard.setEventListeners();
 
@@ -48,13 +59,19 @@ const imagePopup = new PopupWithImage('#popup-card');
 imagePopup.setEventListeners();
 
 const cardSection = new Section({
-  items: initialCards, 
-  renderer: (item) => {
-    const card = new Card(item, cardSel, '#card-template', () => {
-      imagePopup.open(item.name, item.link);
-      
-    });
-    const cardElement = card.generateCard();
-    return cardElement
+  renderer: function(item) {
+    // const card = new Card(item, cardSel, '#card-template', () => {
+    //   imagePopup.open(item.name, item.link);
+    // });
+    // const cardElement = card.generateCard();
+    // return cardElement
+    // console.log(this);
+    // debugger
+    
+    const cardElement = createCard(item);
+    this.addItem(cardElement);
   },  
 }, '.elements');
+cardSection.renderItems(initialCards);
+
+
