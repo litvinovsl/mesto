@@ -13,6 +13,7 @@ export const validationSettings = {
     inputSelector: '.popup__input',
     buttonSelector: '.popup__button-save',
     inputError: 'popup__input_error',
+    error: '.popup__input-error',
     inputSpanError: 'popup__input-error_active',
     buttonSelectorInactive: 'popup__button-save_inactive'
 };
