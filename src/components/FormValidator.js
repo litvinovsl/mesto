@@ -8,7 +8,7 @@ export default class FormValidator {
     this._inputSpanError = settings.inputSpanError;
     this._buttonSelectorInactive = settings.buttonSelectorInactive;
     this._inputs = Array.from(this._popupForm.querySelectorAll(this._inputSelector));
-    this._errors = Array.from(this._popupForm.querySelectorAll('.popup__input-error'));
+    this._errors = Array.from(this._popupForm.querySelectorAll(settings.error));
   }
 
   _isValid(element) {
@@ -45,10 +45,12 @@ export default class FormValidator {
 
     this._errors.forEach((errorMessage) => {
       errorMessage.textContent = '';
+
     });
     
     this._inputs.forEach((inputElement) => {
       inputElement.classList.remove(this._inputError);
+      
     });
 
   }
