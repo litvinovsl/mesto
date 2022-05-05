@@ -23,6 +23,9 @@
 .popup__user-about-error{
     top: 192px;
 }
+.popup__avatar-link-error{
+    top: 150px;
+}
 
 @media screen and (max-width: 600px) {
     .popup__input-error {
@@ -41,5 +44,8 @@
     }
     .popup__user-about-error{
         top: 205px;
+    }
+    .popup__avatar-link-error{
+        top: 120px;
     }
 }

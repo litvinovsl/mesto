@@ -42,3 +42,5 @@
 @import url(../blocks/popup/popup__delete-card-yes/popup__delete-card-yes.css);
 @import url(../blocks/popup/__container/_delete-card/popup__container_delete-card.css);
 @import url(../blocks/popup/__edit-text/_delete-card/popup__edit-text_delete-card.css);
+@import url(../blocks/popup/__container/update-avatar/popup__container_update-avatar.css);
+@import url(../blocks/popup/__edit-text/_update-avatar/popup__edit-text_update-avatar.css);
