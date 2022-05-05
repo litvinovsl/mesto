@@ -32,8 +32,8 @@ editButt.addEventListener('click', function () {
 
   const data = userInfo.getUserInfo();
   popupUser.fillInputs(data);
-  popupUser.open();
   editPopupValidator.resetValidation();
+  popupUser.open();
 });
 
 const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
