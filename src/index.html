@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -23,14 +22,16 @@
                     <div class="profile__user-name-edit">
                         <h1 class="profile__username">Жак-Ив Кусто</h1>
                         <button type="button" class="profile__edit-butt">
-                            <img class="profile__edit-butt-img" src="<%=require('./images/buttom-edit.svg')%>" alt="редактировать">
+                            <img class="profile__edit-butt-img" src="<%=require('./images/buttom-edit.svg')%>"
+                                alt="редактировать">
                         </button>
                     </div>
                     <p class="profile__about-user">Исследователь океана</p>
                 </div>
             </div>
             <button type="button" class="profile__add-button">
-                <img class="profile__add-button-img" src="<%=require('./images/buttom-plus.svg')%>" alt="добавить картинку">
+                <img class="profile__add-button-img" src="<%=require('./images/buttom-plus.svg')%>"
+                    alt="добавить картинку">
             </button>
         </section>
         <section class="elements">
@@ -41,7 +42,10 @@
                 <button type="button" class="element__delete"></button>
                 <img class="element__image" src="#" alt="картинка">
                 <p class="element__name"></p>
-                <button type="button" class="element__like"></button>
+                <div class="element__counter-and-like">
+                    <button type="button" class="element__like"></button>
+                    <p class="element__like-counter">0</p>
+                </div>
             </div>
         </template>
     </main>
@@ -78,14 +82,15 @@
             <h2 class="popup__edit-text">Новое место</h2>
             <form id="form-card" class="popup__form" name="formPlace" action="#" novalidate>
                 <fieldset class="popup__inputs">
-                    <input id="popup__place-name" type="text" class="popup__input" name="name"
-                        placeholder="Название" minlength="2" maxlength="30" required>
+                    <input id="popup__place-name" type="text" class="popup__input" name="name" placeholder="Название"
+                        minlength="2" maxlength="30" required>
                     <span class="popup__place-name-error popup__input-error"></span>
 
                     <input id="popup__place-link" type="url" class="popup__input" name="link"
                         placeholder="Ссылка на картинку" required>
                     <span class="popup__place-link-error popup__input-error"></span>
-                    <button id="create-button" class="popup__button-save popup__button-save_inactive" type="submit" disabled>Создать</button>
+                    <button id="create-button" class="popup__button-save popup__button-save_inactive" type="submit"
+                        disabled>Создать</button>
                 </fieldset>
             </form>
         </div>
@@ -122,7 +127,8 @@
                     <input id="popup__avatar-link" type="url" class="popup__input" name="link"
                         placeholder="Ссылка на картинку" required>
                     <span class="popup__avatar-link-error popup__input-error"></span>
-                    <button class="popup__button-save popup__button-save_inactive" type="submit" disabled>Сохранить</button>
+                    <button class="popup__button-save popup__button-save_inactive" type="submit"
+                        disabled>Сохранить</button>
                 </fieldset>
             </form>
         </div>
