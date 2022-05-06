@@ -11,7 +11,6 @@ import {
   editUserForm,
   plusButt,
   popupCreate,
-  initialCards,
   validationSettings,
   avatarBatton,
   updateAvatarForm,
@@ -29,16 +28,20 @@ api.getPageData().then((responses) => {
   const [cardArr, userData] = responses;
   userInfo.setUserAvatar({avatarLink: userData.avatar});
   userInfo.setUserInfo(userData);
+  userInfo.setUserId(userData._id);
+  cardSection.renderItems(cardArr);
+  console.log(responses);
 }).catch((err) => {
   console.log(err);
 });
+
 
 //========================================================================================
 
 function createCard(item){
   const card = new Card(item, '#card-template', (data) => {
     imagePopup.open(data.name, data.link);
-  });
+  }, userInfo.getUserId());
   const cardElement = card.generateCard();
   return cardElement
 }
@@ -66,8 +69,6 @@ editButt.addEventListener('click', function () {
   editPopupValidator.resetValidation();
   popupUser.open();
 });
-
-
 
 //==========================================================================
 //все для аватара
@@ -102,10 +103,11 @@ createPopupValidator.enableValidation();
 //все с карточками
 
 const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
+  api.addNewCard(item).then((data) => {
+    const cardElement = createCard(data);
+    cardSection.addItem(cardElement);
+});
   console.log(item);
-  
-  const cardElement = createCard(item);
-  cardSection.addItem(cardElement);
 });
 popupCreateCard.setEventListeners();
 
@@ -121,90 +123,9 @@ imagePopup.setEventListeners();
 
 const cardSection = new Section({
   renderer: function(item) {
-    
     const cardElement = createCard(item);
     this.addItem(cardElement);
+    
   },  
 }, '.elements');
 
-api.addCards().then((data) => {
-    cardSection.renderItems(data);
-});
-cardSection.renderItems(initialCards);
-
-//======================================================================
-
-// профиль пользователя(имя о себе аватар _id и тд)
-// fetch('https://nomoreparties.co/v1/cohort-40/users/me', {
-//   headers: {
-//     authorization: '6cbd57a7-9435-4249-951e-f8947dba9801'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((data) => {
-//     console.log(data);
-// });
-
-
-//массив карточек с инфой
-// fetch('https://mesto.nomoreparties.co/v1/cohort-40/cards', {
-//   headers: {
-//     authorization: '6cbd57a7-9435-4249-951e-f8947dba9801'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((data) => {
-//     console.log(data);
-// });
-
-//avatar
-
-// fetch('https://mesto.nomoreparties.co/v1/cohort-40/users/me/avatar', {
-//   method: 'PATCH',
-//   headers: {
-//     authorization: '6cbd57a7-9435-4249-951e-f8947dba9801'
-//   },
-//   headers: {
-//     authorization: '6cbd57a7-9435-4249-951e-f8947dba9801',
-//    'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify({
-//     avatar: 'https://www.50languages.com/template/img/58755931.jpg',
-//   })
-// })
-  
-
-//запрос на редактировнные данные профиля
-// fetch('https://mesto.nomoreparties.co/v1/cohort-40/users/me', {
-//   method: 'PATCH',
-//   headers: {
-//     authorization: '6cbd57a7-9435-4249-951e-f8947dba9801',
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify({
-//     name: 'Litvinov Sergey',
-//     about: 'student'
-//   })
-// })
-//   .then(res => res.json())
-//   .then((data) => {
-//     console.log(data);
-// });
-
-//добавление новой карточки
-// fetch('https://mesto.nomoreparties.co/v1/cohort-40/cards', {
-//   method: 'PATCH',
-//   headers: {
-//     authorization: '6cbd57a7-9435-4249-951e-f8947dba9801',
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify({
-//     name: 'Litvinov Sergey',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//   })
-// })
-//   .then(res => res.json())
-//   .then((data) => {
-//     console.log(data);
-// });
-  

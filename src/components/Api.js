@@ -6,11 +6,9 @@ export default class Api {
 
     _checkReply(res) {
         if (res.ok) {
-            console.log('res.ok');
             return res.json();
         } else {
             console.log('!!!!!!!!!!!!!!!!!res.ok');
-
             return Promise.reject(`${res.status} ${res.statusText}`);
         }
     }
@@ -47,14 +45,14 @@ export default class Api {
             .then(this._checkReply);
     }
 
-    // addNewCard(body) {
-    //     const newUrl = this._baseUrl + '/cards';
-    //     return fetch(newUrl, {
-    //         method: 'POST',
-    //         headers: this._headers,
-    //         body: JSON.stringify(body),
-    //     }).then(this._checkReply);
-    // }
+    addNewCard(data) {
+        const newUrl = this._baseUrl + '/cards';
+        return fetch(newUrl, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify(data),
+        }).then(this._checkReply);
+    }
 
     updateProfileAvatar({ avatar }) {
         const newUrl = this._baseUrl + `/users/me/avatar`;

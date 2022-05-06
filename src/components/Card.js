@@ -1,11 +1,12 @@
 export default class Card {
-    constructor(data, cardSelector, handleCardClick) {
+    constructor(data, cardSelector, handleCardClick, userId) {
+        this._isYourCard = userId;
+        this._dataId = data.owner._id;
         this._title = data.name;
         this._image = data.link;
         this._cardSelector = cardSelector;
         this._data = data;
         this._handleCardClick = handleCardClick;
-        
     }
 
     _getTemplate() {
@@ -20,12 +21,15 @@ export default class Card {
         this._elementImage.src = this._image;
         this._elementImage.alt = this._title;
         this._element.querySelector('.element__name').textContent = this._title;
-
+        if (!(this._isYourCard === this._dataId)) {
+            this._element.querySelector('.element__delete').remove();
+          }
         return this._element;
     }
    
     _setEventListeners() {
         this._elementImage.addEventListener('click', () => {
+
             this._handleCardClick(this._data);
         });
         this._element.querySelector('.element__like').addEventListener('click', (evt) => {
