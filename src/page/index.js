@@ -25,6 +25,16 @@ const api = new Api({
   }
 }); 
 
+api.getPageData().then((responses) => {
+  const [cardArr, userData] = responses;
+  userInfo.setUserAvatar({avatarLink: userData.avatar});
+  userInfo.setUserInfo(userData);
+}).catch((err) => {
+  console.log(err);
+});
+
+//========================================================================================
+
 function createCard(item){
   const card = new Card(item, '#card-template', (data) => {
     imagePopup.open(data.name, data.link);

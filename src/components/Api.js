@@ -22,12 +22,12 @@ export default class Api {
         }).then(this._checkReply);
     }
 
-    // getUserInfo() {
-    //     const newUrl = this._baseUrl + '/users/me';
-    //     return fetch(newUrl, {
-    //         headers: this._headers,
-    //     }).then(this._checkReply);
-    // }
+    _getUserInfo() {
+        const newUrl = this._baseUrl + '/users/me';
+        return fetch(newUrl, {
+            headers: this._headers,
+        }).then(this._checkReply);
+    }
 
     updateUserInfo({ name, about }) {
         console.log('updateUserInfo');
@@ -63,6 +63,17 @@ export default class Api {
             headers: this._headers,
             body: JSON.stringify({ avatar }),
         }).then(this._checkReply);
+    }
+
+    _getInitialCards() {
+        const newUrl = this._baseUrl + '/cards';
+        return fetch(newUrl, {
+          headers: this._headers,
+        }).then(this._checkReply);
+      }
+
+    getPageData(){
+        return Promise.all([this._getInitialCards(), this._getUserInfo()]);
     }
 
 
