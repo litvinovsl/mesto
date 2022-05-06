@@ -2,6 +2,9 @@ export const editButt = document.querySelector('.profile__edit-butt');
 export const editUserForm = document.querySelector('#popup-user');
 export const plusButt = document.querySelector('.profile__add-button');
 export const popupCreate = document.querySelector('#popup-create');
+export const avatarBatton = document.querySelector('.profile__avatar-button');
+export const updateAvatarForm = document.querySelector('#form-avatar');
+export const profileAvatar = document.querySelector('.profile__avatar');
 export const cardSel = {
   popupName: document.querySelector('.popup__img-name'),
   popupImg: document.querySelector('.popup__image'),

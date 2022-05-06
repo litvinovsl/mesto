@@ -12,7 +12,10 @@ import {
   popupCreate,
   cardSel,
   initialCards,
-  validationSettings
+  validationSettings,
+  avatarBatton,
+  updateAvatarForm,
+  profileAvatar
 } from '../utils/constants.js';
 
 function createCard(item){
@@ -46,6 +49,22 @@ plusButt.addEventListener('click', function(){
   createPopupValidator.resetValidation();
   popupCreateCard.open();
 });
+
+//==========================================================================
+
+const popupAvatar = new PopupWithForm('#popup-update-avatar', (user) => {
+  profileAvatar.src = user.link;
+});
+const avatarFormValidation = new FormValidator(validationSettings, updateAvatarForm);
+avatarFormValidation.enableValidation();
+popupAvatar.setEventListeners();
+
+avatarBatton.addEventListener('click', function(){
+  avatarFormValidation.resetValidation();
+  popupAvatar.open();
+})
+
+//==========================================================================
 
 const editPopupValidator = new FormValidator(validationSettings, editUserForm);
 const createPopupValidator = new FormValidator(validationSettings, popupCreate);
