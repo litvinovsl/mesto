@@ -6,8 +6,11 @@ export default class Api {
 
     _checkReply(res) {
         if (res.ok) {
+            console.log('res.ok');
             return res.json();
         } else {
+            console.log('!!!!!!!!!!!!!!!!!res.ok');
+
             return Promise.reject(`${res.status} ${res.statusText}`);
         }
     }
@@ -19,28 +22,46 @@ export default class Api {
         }).then(this._checkReply);
     }
 
-    getUserInfo() {
+    // getUserInfo() {
+    //     const newUrl = this._baseUrl + '/users/me';
+    //     return fetch(newUrl, {
+    //         headers: this._headers,
+    //     }).then(this._checkReply);
+    // }
+
+    updateUserInfo({ name, about }) {
+        console.log('updateUserInfo');
         const newUrl = this._baseUrl + '/users/me';
         return fetch(newUrl, {
+            method: 'PATCH',
             headers: this._headers,
+            body: JSON.stringify({ name, about }),
         }).then(this._checkReply);
     }
 
-    addNewCard(body) {
-        const newUrl = this._baseUrl + '/cards';
+    addCards() {
+        const newUrl = this._baseUrl + '/cards'
         return fetch(newUrl, {
-            method: 'POST',
-            headers: this._headers,
-            body: JSON.stringify(body),
-        }).then(this._checkReply);
+            headers: this._headers
+        })
+            .then(this._checkReply);
     }
 
-    updateProfileAvatar({avatar}) {
+    // addNewCard(body) {
+    //     const newUrl = this._baseUrl + '/cards';
+    //     return fetch(newUrl, {
+    //         method: 'POST',
+    //         headers: this._headers,
+    //         body: JSON.stringify(body),
+    //     }).then(this._checkReply);
+    // }
+
+    updateProfileAvatar({ avatar }) {
         const newUrl = this._baseUrl + `/users/me/avatar`;
         return fetch(newUrl, {
             method: 'PATCH',
             headers: this._headers,
-            body: JSON.stringify({avatar}),
+            body: JSON.stringify({ avatar }),
         }).then(this._checkReply);
     }
 

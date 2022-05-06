@@ -11,12 +11,10 @@ import {
   editUserForm,
   plusButt,
   popupCreate,
-  cardSel,
   initialCards,
   validationSettings,
   avatarBatton,
   updateAvatarForm,
-  profileAvatar
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -45,7 +43,10 @@ const userInfo = new UserInfo({
 });
 
 const popupUser = new PopupWithForm('#popup-user', (user) => {
-  userInfo.setUserInfo(user);
+  api.updateUserInfo({name: user.name, about: user.about})
+    .then((data) => {
+      userInfo.setUserInfo(data);
+    });
 });
 popupUser.setEventListeners();
 editButt.addEventListener('click', function () {
@@ -91,6 +92,8 @@ createPopupValidator.enableValidation();
 //все с карточками
 
 const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
+  console.log(item);
+  
   const cardElement = createCard(item);
   cardSection.addItem(cardElement);
 });
@@ -108,10 +111,15 @@ imagePopup.setEventListeners();
 
 const cardSection = new Section({
   renderer: function(item) {
+    
     const cardElement = createCard(item);
     this.addItem(cardElement);
   },  
 }, '.elements');
+
+api.addCards().then((data) => {
+    cardSection.renderItems(data);
+});
 cardSection.renderItems(initialCards);
 
 //======================================================================
@@ -136,7 +144,7 @@ cardSection.renderItems(initialCards);
 // })
 //   .then(res => res.json())
 //   .then((data) => {
-//     // console.log(data);
+//     console.log(data);
 // });
 
 //avatar
@@ -163,14 +171,14 @@ cardSection.renderItems(initialCards);
 //     authorization: '6cbd57a7-9435-4249-951e-f8947dba9801',
 //     'Content-Type': 'application/json'
 //   },
-  // body: JSON.stringify({
-  //   name: 'Litvinov Sergey',
-  //   about: 'student'
-  // })
+//   body: JSON.stringify({
+//     name: 'Litvinov Sergey',
+//     about: 'student'
+//   })
 // })
 //   .then(res => res.json())
 //   .then((data) => {
-//     // console.log(data);
+//     console.log(data);
 // });
 
 //добавление новой карточки
