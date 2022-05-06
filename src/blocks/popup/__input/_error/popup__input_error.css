@@ -12,16 +12,16 @@
     visibility: visible;
 }
 .popup__place-name-error{
-    top: 136px;
+    top: 148px;
 }
 .popup__place-link-error{
-    top: 192px;
+    top: 204px;
 }
 .popup__username-error{
-    top: 136px;
+    top: 148px;
 }
 .popup__user-about-error{
-    top: 192px;
+    top: 204px;
 }
 .popup__avatar-link-error{
     top: 150px;
