@@ -63,16 +63,33 @@ export default class Api {
         }).then(this._checkReply);
     }
 
+    addCardLike(cardId) {
+        const requestUrl = this._baseUrl + `/cards/likes/${cardId}`;
+        return fetch(requestUrl, {
+          method: 'PUT',
+          headers: this._headers,
+        }).then(this._checkReply);
+    }
+
+    deleteCardLike(cardId) {
+        const requestUrl = this._baseUrl + `/cards/likes/${cardId}`;
+        return fetch(requestUrl, {
+          method: 'DELETE',
+          headers: this._headers,
+        }).then(this._checkReply);
+    }
+
     _getInitialCards() {
         const newUrl = this._baseUrl + '/cards';
         return fetch(newUrl, {
           headers: this._headers,
         }).then(this._checkReply);
-      }
+    }
 
     getPageData(){
         return Promise.all([this._getInitialCards(), this._getUserInfo()]);
     }
+
 
 
 
