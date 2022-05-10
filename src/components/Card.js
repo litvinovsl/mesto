@@ -79,6 +79,8 @@ export default class Card {
 
 
         this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
+            const popupDeleteCard = document.querySelector('#popup-delete-card');
+            popupDeleteCard.classList.add('popup_opened');
             this._handleCardDelete();
             this._element.remove();
         });

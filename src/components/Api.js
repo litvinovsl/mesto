@@ -13,10 +13,11 @@ export default class Api {
         }
     }
 
-    getInitialCards() {
+
+    _getInitialCards() {
         const newUrl = this._baseUrl + '/cards';
         return fetch(newUrl, {
-            headers: this._headers,
+          headers: this._headers,
         }).then(this._checkReply);
     }
 
@@ -79,12 +80,7 @@ export default class Api {
         }).then(this._checkReply);
     }
 
-    _getInitialCards() {
-        const newUrl = this._baseUrl + '/cards';
-        return fetch(newUrl, {
-          headers: this._headers,
-        }).then(this._checkReply);
-    }
+    
 
     deleteCard(cardId) {
         const requestUrl = this._baseUrl + `/cards/${cardId}`;

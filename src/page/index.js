@@ -57,6 +57,7 @@ function createCard(item){
       .catch((err) => {console.error(err);});
     }
   }, () => {
+
     api.deleteCard(card.getCardId())
       .then((data) => {
         console.log('data api: ', data);
@@ -69,6 +70,10 @@ function createCard(item){
   return cardElement
 }
 
+// const popupDeleteCard = new PopupWithForm('#popup-delete-card', () => {
+// });
+// popupDeleteCard.setEventListeners();
+
 //==============================================================================================================
 //все с профилем
 
@@ -79,11 +84,16 @@ const userInfo = new UserInfo({
 });
 
 const popupUser = new PopupWithForm('#popup-user', (user) => {
+  popupUser.isDownloadProgress(true);
   api.updateUserInfo({name: user.name, about: user.about})
     .then((data) => {
       userInfo.setUserInfo(data);
+      popupUser.close();
     })
-    .catch((err) => {console.error(err);});
+    .catch((err) => {console.error(err);})
+    .finally(() => {
+      popupUser.isDownloadProgress(false);
+    });
 });
 popupUser.setEventListeners();
 editButt.addEventListener('click', function () {
@@ -98,9 +108,15 @@ editButt.addEventListener('click', function () {
 //все для аватара
 
 const popupAvatar = new PopupWithForm('#popup-update-avatar', (user) => {
-api.updateProfileAvatar({avatar: user.link}).then((data) => {
-  userInfo.setUserAvatar({avatarLink: data.avatar});
-  });
+  popupAvatar.isDownloadProgress(true);
+  api.updateProfileAvatar({avatar: user.link}).then((data) => {
+    userInfo.setUserAvatar({avatarLink: data.avatar});
+    popupAvatar.close();
+    })
+    .catch((err) => {console.error(err)})
+    .finally(() => {
+      popupAvatar.isDownloadProgress(false);
+    });
 });
 
 popupAvatar.setEventListeners();
@@ -124,12 +140,16 @@ createPopupValidator.enableValidation();
 //все с карточками
 
 const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
+  popupCreateCard.isDownloadProgress(true);
   api.addNewCard(item).then((data) => {
     const cardElement = createCard(data);
     cardSection.addItem(cardElement);
+    popupCreateCard.close();
     })
-    .catch((err) => {console.error(err);});
-  console.log(item);
+    .catch((err) => {console.error(err);})
+    .finally(() => {
+      popupCreateCard.isDownloadProgress(false);
+    });
 });
 popupCreateCard.setEventListeners();
 

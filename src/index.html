@@ -16,17 +16,17 @@
         <section class="profile">
             <div class="profile__info">
                 <button class="profile__avatar-button" type="button" title="Изменить аватар">
-                    <img class="profile__avatar" src="" alt="аватар">
+                    <img class="profile__avatar" src="<%=require('./images/Avatar-edit.svg')%>" alt="аватар">
                 </button>
                 <div class="profile__user">
                     <div class="profile__user-name-edit">
-                        <h1 class="profile__username"></h1>
+                        <h1 class="profile__username">Жак-Ив-Кусто</h1>
                         <button type="button" class="profile__edit-butt">
                             <img class="profile__edit-butt-img" src="<%=require('./images/buttom-edit.svg')%>"
                                 alt="редактировать">
                         </button>
                     </div>
-                    <p class="profile__about-user"></p>
+                    <p class="profile__about-user">Исследователь океанов</p>
                 </div>
             </div>
             <button type="button" class="profile__add-button">
@@ -90,7 +90,7 @@
                         placeholder="Ссылка на картинку" required>
                     <span class="popup__place-link-error popup__input-error"></span>
                     <button id="create-button" class="popup__button-save popup__button-save_inactive" type="submit"
-                        disabled>Создать</button>
+                        disabled>Сохранить</button>
                 </fieldset>
             </form>
         </div>
