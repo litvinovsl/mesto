@@ -9,6 +9,6 @@
     }
     .profile__user-name-edit:nth-child(1){
         align-self: flex-start;
-        margin-left: 46px;
+        margin: auto;
     }
 }
