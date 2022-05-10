@@ -30,6 +30,7 @@ api.getPageData().then((responses) => {
   userInfo.setUserInfo(userData);
   userInfo.setUserId(userData._id);
   cardSection.renderItems(cardArr);
+  console.log(responses);
 }).catch((err) => {
   console.log(err);
 });
@@ -45,14 +46,22 @@ function createCard(item){
         .then((data) =>{
           card.unsetLike();
           card.updateLikes(data.likes);
-        });
+        })
+        .catch((err) => {console.error(err);});
     } else {
       api.addCardLike(card.getCardId())
         .then((data) => {
           card.setLike();
           card.updateLikes(data.likes);
-      });
+      })
+      .catch((err) => {console.error(err);});
     }
+  }, () => {
+    api.deleteCard(card.getCardId())
+      .then((data) => {
+        console.log('data api: ', data);
+      })
+      .catch((err) => {console.error(err);});
   });
 
   const cardElement = card.generateCard();
@@ -73,7 +82,8 @@ const popupUser = new PopupWithForm('#popup-user', (user) => {
   api.updateUserInfo({name: user.name, about: user.about})
     .then((data) => {
       userInfo.setUserInfo(data);
-    });
+    })
+    .catch((err) => {console.error(err);});
 });
 popupUser.setEventListeners();
 editButt.addEventListener('click', function () {
@@ -117,7 +127,8 @@ const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
   api.addNewCard(item).then((data) => {
     const cardElement = createCard(data);
     cardSection.addItem(cardElement);
-});
+    })
+    .catch((err) => {console.error(err);});
   console.log(item);
 });
 popupCreateCard.setEventListeners();

@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(data, cardSelector, handleCardClick, userId, handleCardLike) {
+    constructor(data, cardSelector, handleCardClick, userId, handleCardLike, handleCardDelete) {
         this._userId = userId;
         this._cardId = data._id;
         this._isYourCard = userId;
@@ -10,6 +10,7 @@ export default class Card {
         this._data = data;
         this._handleCardLike = handleCardLike;
         this._handleCardClick = handleCardClick;
+        this._handleCardDelete = handleCardDelete;
         this._likes = data.likes;
     }
 
@@ -76,9 +77,13 @@ export default class Card {
             this._handleCardLike(evt);
         });
 
+
         this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
+            this._handleCardDelete();
             this._element.remove();
         });
+
+
     }
 
     getCardId(){

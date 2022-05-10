@@ -86,6 +86,14 @@ export default class Api {
         }).then(this._checkReply);
     }
 
+    deleteCard(cardId) {
+        const requestUrl = this._baseUrl + `/cards/${cardId}`;
+        return fetch(requestUrl, {
+          method: 'DELETE',
+          headers: this._headers,
+        }).then(this._checkReply);
+      }
+
     getPageData(){
         return Promise.all([this._getInitialCards(), this._getUserInfo()]);
     }
