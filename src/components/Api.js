@@ -13,7 +13,6 @@ export default class Api {
         }
     }
 
-
     _getInitialCards() {
         const newUrl = this._baseUrl + '/cards';
         return fetch(newUrl, {
@@ -29,7 +28,6 @@ export default class Api {
     }
 
     updateUserInfo({ name, about }) {
-        console.log('updateUserInfo');
         const newUrl = this._baseUrl + '/users/me';
         return fetch(newUrl, {
             method: 'PATCH',
@@ -65,16 +63,16 @@ export default class Api {
     }
 
     addCardLike(cardId) {
-        const requestUrl = this._baseUrl + `/cards/likes/${cardId}`;
-        return fetch(requestUrl, {
+        const newUrl = this._baseUrl + `/cards/likes/${cardId}`;
+        return fetch(newUrl, {
           method: 'PUT',
           headers: this._headers,
         }).then(this._checkReply);
     }
 
     deleteCardLike(cardId) {
-        const requestUrl = this._baseUrl + `/cards/likes/${cardId}`;
-        return fetch(requestUrl, {
+        const newUrl = this._baseUrl + `/cards/likes/${cardId}`;
+        return fetch(newUrl, {
           method: 'DELETE',
           headers: this._headers,
         }).then(this._checkReply);
@@ -83,8 +81,8 @@ export default class Api {
     
 
     deleteCard(cardId) {
-        const requestUrl = this._baseUrl + `/cards/${cardId}`;
-        return fetch(requestUrl, {
+        const newUrl = this._baseUrl + `/cards/${cardId}`;
+        return fetch(newUrl, {
           method: 'DELETE',
           headers: this._headers,
         }).then(this._checkReply);
@@ -93,9 +91,6 @@ export default class Api {
     getPageData(){
         return Promise.all([this._getInitialCards(), this._getUserInfo()]);
     }
-
-
-
 
     // другие методы работы с API
 }
