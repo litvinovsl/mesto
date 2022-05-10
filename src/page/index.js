@@ -30,29 +30,9 @@ api.getPageData().then((responses) => {
   userInfo.setUserInfo(userData);
   userInfo.setUserId(userData._id);
   cardSection.renderItems(cardArr);
-  console.log(responses);
 }).catch((err) => {
   console.log(err);
 });
-
-//=====================================
-
-// const card = new Card(item, '#card-template', (data) => {
-//   imagePopup.open(data.name, data.link);
-// }, userInfo.getUserId(),() =>{
-//   if (card.isLiked){
-//     api.deleteCardLike(card.getCardId())
-//       .then((data) =>{
-//         console.log('deletelike');
-//       });
-//   } else {
-//     api.addCardLike(card.getCardId())
-//       .then((data) => {
-//       // card.unsetLike()
-//       console.log('addlike');
-//     });
-//   }
-// });
 
 //========================================================================================
 
@@ -64,34 +44,19 @@ function createCard(item){
       api.deleteCardLike(card.getCardId())
         .then((data) =>{
           card.unsetLike();
-          console.log('deletelike');
+          card.updateLikes(data.likes);
         });
     } else {
       api.addCardLike(card.getCardId())
         .then((data) => {
           card.setLike();
-        // card.unsetLike()
-        console.log('addlike');
+          card.updateLikes(data.likes);
       });
     }
   });
-  // const card = new Card(item, '#card-template', (data) => {
-  //   imagePopup.open(data.name, data.link);
-  // }, userInfo.getUserId());
-  // if (card.isLiked){
-  //   deleteCardLike(card.getCardId())
-  //     .then((data) =>{
-  //       console.log('deletelike');
-  //     });
-  // } else {
-    // api.addCardLike(card.getCardId())
-    //   .then((data) => {
-    //   // card.unsetLike()
-    //   console.log('addlike');
-  //   });
-  // }
-  
+
   const cardElement = card.generateCard();
+  card.updateLikes(item.likes);
   return cardElement
 }
 
@@ -125,9 +90,7 @@ editButt.addEventListener('click', function () {
 const popupAvatar = new PopupWithForm('#popup-update-avatar', (user) => {
 api.updateProfileAvatar({avatar: user.link}).then((data) => {
   userInfo.setUserAvatar({avatarLink: data.avatar});
-});
-
-
+  });
 });
 
 popupAvatar.setEventListeners();
@@ -147,7 +110,6 @@ avatarFormValidation.enableValidation();
 editPopupValidator.enableValidation();
 createPopupValidator.enableValidation();
 
-//===========================================================================
 //================================================================================================================
 //все с карточками
 
@@ -173,8 +135,8 @@ imagePopup.setEventListeners();
 const cardSection = new Section({
   renderer: function(item) {
     const cardElement = createCard(item);
-    this.addItems(cardElement);
     
+    this.addItems(cardElement);
   },  
 }, '.elements');
 

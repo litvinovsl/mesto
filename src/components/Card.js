@@ -11,7 +11,6 @@ export default class Card {
         this._handleCardLike = handleCardLike;
         this._handleCardClick = handleCardClick;
         this._likes = data.likes;
-        // console.log(data)
     }
 
     _getTemplate() {
@@ -37,22 +36,16 @@ export default class Card {
 
     _checkLikesCard(){
         const myLike = this._likes.some((item) => {
-            // console.log('userId: ' , this._userId);
-            // console.log('item.Id: ', item._id);
             if (item._id === this._userId){
                 return true
             } else {
                 return false
             }
-            // item._id === this._userId;
         });
-        // console.log(myLike);
         return myLike
-        
-        
     }
 
-    _updateLikes(data){
+    updateLikes(data){
         this._elementCounterLike.textContent = data.length;
     }
 
@@ -82,17 +75,6 @@ export default class Card {
         this._element.querySelector('.element__like').addEventListener('click', (evt) => {
             this._handleCardLike(evt);
         });
-
-
-        // this._element.querySelector('.element__like').addEventListener('click', (evt) => {
-        //     if(this._checkLikesCard()){
-        //         evt.target.classList.add('element__like_active');
-        //         this.isLiked = true;
-        //     } else {
-        //         evt.target.classList.remove('element__like_active');
-        //         this.isLiked = false;
-        //     }
-        // });
 
         this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
             this._element.remove();
