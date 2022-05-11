@@ -58,6 +58,7 @@ function createCard(item) {
     }
   },
     (evt) => {
+      popupDeleteCard.open();
       const cardElement = evt.target.closest('.element');
       popupDeleteCard.handleButtonElement((evt) => {
       popupDeleteCard.isConfirmProgress(true);
@@ -83,6 +84,11 @@ function createCard(item) {
 
 const popupDeleteCard = new PopupWithConfirmation('#popup-delete-card');
 popupDeleteCard.setEventListeners();
+
+// console.log(deleteCardButtonnn);
+// deleteCardButton.addEventListener('click', function() {
+//   console.log('delete card');
+// });
 
 //==============================================================================================================
 //все с профилем
