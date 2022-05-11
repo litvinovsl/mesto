@@ -176,7 +176,6 @@ imagePopup.setEventListeners();
 const cardSection = new Section({
   renderer: function (item) {
     const cardElement = createCard(item);
-
-    this.appendItem(cardElement);
+    cardSection.appendItem(cardElement);
   },
 }, '.elements');
