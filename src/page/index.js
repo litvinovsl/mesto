@@ -57,15 +57,14 @@ function createCard(item) {
         .catch((err) => { console.error(err); });
     }
   },
-    (evt) => {
+    () => {
       popupDeleteCard.open();
-      // const cardElement = evt.target.closest('.element');
       popupDeleteCard.handleButtonElement((evt) => {
       popupDeleteCard.isConfirmProgress(true);
         evt.preventDefault();
         api.deleteCard(card.getCardId())
           .then((data) => {
-            // cardElement.remove();
+            card.removeItem();
             console.log(data);
             popupDeleteCard.close();
           })

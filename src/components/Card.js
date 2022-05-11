@@ -68,7 +68,11 @@ export default class Card {
         } else {
           this.unsetLike();
         }
-      }
+    }
+
+    removeItem(){
+        this._element.remove();
+    }
    
     _setEventListeners() {
         this._elementImage.addEventListener('click', () => {
