@@ -100,7 +100,7 @@ const userInfo = new UserInfo({
 });
 
 const popupUser = new PopupWithForm('#popup-user', (user) => {
-  popupUser.isDownloadProgress(true);
+  popupUser.renderLoading(true);
   api.updateUserInfo({ name: user.name, about: user.about })
     .then((data) => {
       userInfo.setUserInfo(data);
@@ -108,7 +108,7 @@ const popupUser = new PopupWithForm('#popup-user', (user) => {
     })
     .catch((err) => { console.error(err); })
     .finally(() => {
-      popupUser.isDownloadProgress(false);
+      popupUser.renderLoading(false);
     });
 });
 popupUser.setEventListeners();
@@ -124,14 +124,14 @@ editButt.addEventListener('click', function () {
 //все для аватара
 
 const popupAvatar = new PopupWithForm('#popup-update-avatar', (user) => {
-  popupAvatar.isDownloadProgress(true);
+  popupAvatar.renderLoading(true);
   api.updateProfileAvatar({ avatar: user.link }).then((data) => {
     userInfo.setUserAvatar({ avatarLink: data.avatar });
     popupAvatar.close();
   })
     .catch((err) => { console.error(err) })
     .finally(() => {
-      popupAvatar.isDownloadProgress(false);
+      popupAvatar.renderLoading(false);
     });
 });
 
@@ -156,7 +156,7 @@ createPopupValidator.enableValidation();
 //все с карточками
 
 const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
-  popupCreateCard.isDownloadProgress(true);
+  popupCreateCard.renderLoading(true);
   api.addNewCard(item).then((data) => {
     const cardElement = createCard(data);
     cardSection.addItem(cardElement);
@@ -164,7 +164,7 @@ const popupCreateCard = new PopupWithForm('#popup-create', (item) => {
   })
     .catch((err) => { console.error(err); })
     .finally(() => {
-      popupCreateCard.isDownloadProgress(false);
+      popupCreateCard.renderLoading(false);
     });
 });
 popupCreateCard.setEventListeners();

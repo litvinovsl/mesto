@@ -30,14 +30,12 @@ export default class PopupWithForm extends Popup {
         } );
         super.setEventListeners();
     }
-
-    isDownloadProgress(isDownload) {
+ 
+    renderLoading(isDownload) {
         if (isDownload === true) {
             this._formSubmitButtonElement.textContent = 'Сохранение...';
-            this._formSubmitButtonElement.classList.add('popup__button-save_inactive');
         } else {
             this._formSubmitButtonElement.textContent = 'Сохранить';
-            this._formSubmitButtonElement.classList.remove('popup__button-save_inactive');
         }
       }
 

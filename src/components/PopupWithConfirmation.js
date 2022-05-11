@@ -19,10 +19,8 @@ export default class PopupWithConfirmation extends Popup {
     isConfirmProgress(isDownload) {
         if (isDownload === true) {
             this._formSubmitButtonElement.textContent = 'Удаление...';
-            this._formSubmitButtonElement.classList.add('popup__button-save_inactive');
         } else {
             this._formSubmitButtonElement.textContent = 'Да';
-            this._formSubmitButtonElement.classList.remove('popup__button-save_inactive');
         }
     }
 }
