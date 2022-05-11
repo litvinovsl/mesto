@@ -59,13 +59,13 @@ function createCard(item) {
   },
     (evt) => {
       popupDeleteCard.open();
-      const cardElement = evt.target.closest('.element');
+      // const cardElement = evt.target.closest('.element');
       popupDeleteCard.handleButtonElement((evt) => {
       popupDeleteCard.isConfirmProgress(true);
         evt.preventDefault();
         api.deleteCard(card.getCardId())
           .then((data) => {
-            cardElement.remove();
+            // cardElement.remove();
             console.log(data);
             popupDeleteCard.close();
           })
@@ -84,11 +84,6 @@ function createCard(item) {
 
 const popupDeleteCard = new PopupWithConfirmation('#popup-delete-card');
 popupDeleteCard.setEventListeners();
-
-// console.log(deleteCardButtonnn);
-// deleteCardButton.addEventListener('click', function() {
-//   console.log('delete card');
-// });
 
 //==============================================================================================================
 //все с профилем
@@ -183,6 +178,6 @@ const cardSection = new Section({
   renderer: function (item) {
     const cardElement = createCard(item);
 
-    this.addItems(cardElement);
+    this.appendItem(cardElement);
   },
 }, '.elements');
