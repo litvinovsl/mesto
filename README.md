@@ -1,5 +1,5 @@
 ## Проект: *Место*
-Ссылка на страницу: https://litvinovsl.github.io/mesto/index.html
+Ссылка на страницу: https://litvinovsl.github.io/mesto
 
 ## Цель работы:
 * Закрепление всех полученных знаний за шесть спринтов в ЯП.
